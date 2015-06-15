@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.example.bee.beehive.Activities.HiveActivity;
+
 import java.util.List;
 
 
@@ -48,7 +46,7 @@ public class ListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), Hive.class); //Cada activity deve saber para que activity deve ir. Tenho que actualizar a interface.
+                Intent intent = new Intent(getActivity(), HiveActivity.class); //Cada activity deve saber para que activity deve ir. Tenho que actualizar a interface.
                 startActivity(intent);
             }
         });

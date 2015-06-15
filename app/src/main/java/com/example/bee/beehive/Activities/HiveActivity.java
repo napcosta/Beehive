@@ -1,16 +1,19 @@
-package com.example.bee.beehive;
+package com.example.bee.beehive.Activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.bee.beehive.ListItems;
+import com.example.bee.beehive.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class Hive extends ActionBarActivity implements ListItems {
+public class HiveActivity extends ActionBarActivity implements ListItems {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

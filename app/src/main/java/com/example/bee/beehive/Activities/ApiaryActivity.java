@@ -1,4 +1,4 @@
-package com.example.bee.beehive;
+package com.example.bee.beehive.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -7,12 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.bee.beehive.ListItems;
+import com.example.bee.beehive.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class Apiary extends ActionBarActivity implements ListItems {
+public class ApiaryActivity extends ActionBarActivity implements ListItems {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
