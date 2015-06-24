@@ -48,5 +48,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, apiary.getna)
-    }*/
+    }
+
+*/
+
 }
