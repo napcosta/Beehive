@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.bee.beehive.Apiary;
+import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.ListItems;
 import com.example.bee.beehive.R;
 
@@ -21,6 +23,15 @@ public class ApiaryActivity extends ActionBarActivity implements ListItems {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apiary);
+
+
+        DatabaseHandler db = new DatabaseHandler(this);
+     //   db.addApiary(new Apiary("Lisboa"));
+        List<Apiary> apiaries = db.getAllApiaries();
+        for(Apiary a : apiaries) {
+            System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName());
+        }
+     //   System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + db.getAllApiaries().size());
     }
 
 
