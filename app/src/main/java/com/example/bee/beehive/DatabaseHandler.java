@@ -3,6 +3,7 @@ package com.example.bee.beehive;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -32,7 +33,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
 
-        String CREATE_APIARIES_TABLE = "CREATE TABLE " + TABLE_APIARIES + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT" + ")";
+        String CREATE_APIARIES_TABLE = "CREATE TABLE " + TABLE_APIARIES + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT UNIQUE" + ")";
         db.execSQL(CREATE_APIARIES_TABLE);
         System.out.println("CREATING DATABASE");
     }
@@ -56,8 +57,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, apiary.getName());
       //  System.out.println(values.toString());
-        db.insert(TABLE_APIARIES, null, values);
 
+        try {
+            db.insertOrThrow(TABLE_APIARIES, null, values);
+        } catch (SQLiteConstraintException e) {
+            System.out.println("EXCEPTION ---------------> APIARY ALREADY EXISTS");
+        }
         db.close();
     }
 

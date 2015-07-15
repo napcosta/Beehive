@@ -19,19 +19,20 @@ import java.util.List;
 
 public class ApiaryActivity extends ActionBarActivity implements ListItems {
 
+    public DatabaseHandler db = new DatabaseHandler(this);
+    //db = new DatabaseHandler(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apiary);
 
+        db.addApiary(new Apiary("PORTO"));
 
-        DatabaseHandler db = new DatabaseHandler(this);
-     //   db.addApiary(new Apiary("Lisboa"));
         List<Apiary> apiaries = db.getAllApiaries();
         for(Apiary a : apiaries) {
             System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName());
         }
-     //   System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + db.getAllApiaries().size());
     }
 
 
@@ -59,13 +60,21 @@ public class ApiaryActivity extends ActionBarActivity implements ListItems {
 
     public List<String> getData()
     {
-        String[] data = {
-                "Braga",
-                "Setubal",
-                "Alentejo"
-        };
+        List<String> str = convertToListOfStrings();
+        //return new ArrayList<String>(Arrays.asList(data));
+        return convertToListOfStrings();
+    }
 
-        return new ArrayList<String>(Arrays.asList(data));
+    private List<String> convertToListOfStrings()
+    {
+        ArrayList<String> strings = new ArrayList<String>();
+
+       // List<Apiary> apiaries = db.getAllApiaries();
+
+        for(Apiary a : db.getAllApiaries()) {
+            strings.add(a != null ? a.getName() : null);
+        }
+        return strings;
     }
 
 }
