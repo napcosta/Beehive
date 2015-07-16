@@ -46,7 +46,7 @@ public class ListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), HiveActivity.class); //Cada activity deve saber para que activity deve ir. Tenho que actualizar a interface.
+                Intent intent = new Intent(getActivity(), ((ListItems) getActivity()).getGoToClass());
                 startActivity(intent);
             }
         });

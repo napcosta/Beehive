@@ -20,7 +20,6 @@ import java.util.List;
 public class ApiaryActivity extends ActionBarActivity implements ListItems {
 
     public DatabaseHandler db = new DatabaseHandler(this);
-    //db = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +63,11 @@ public class ApiaryActivity extends ActionBarActivity implements ListItems {
         //return new ArrayList<String>(Arrays.asList(data));
         return convertToListOfStrings();
     }
+
+	public Class getGoToClass()
+	{
+		return HiveActivity.class;
+	}
 
     private List<String> convertToListOfStrings()
     {

@@ -53,4 +53,10 @@ public class HiveActivity extends ActionBarActivity implements ListItems {
 
         return new ArrayList<String>(Arrays.asList(data));
     }
+
+    public Class getGoToClass()
+    {
+        return ApiaryActivity.class;
+    }
+
 }

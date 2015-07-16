@@ -8,4 +8,6 @@ import java.util.List;
 public interface ListItems
 {
     public List<String> getData();
+
+    public Class getGoToClass();
 }
