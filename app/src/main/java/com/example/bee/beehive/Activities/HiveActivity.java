@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.bee.beehive.DatabaseHandler;
+import com.example.bee.beehive.Hive;
 import com.example.bee.beehive.ListItems;
 import com.example.bee.beehive.R;
 
@@ -15,10 +17,20 @@ import java.util.List;
 
 public class HiveActivity extends ActionBarActivity implements ListItems {
 
+    public DatabaseHandler db = new DatabaseHandler(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hive);
+
+        db.addHive(new Hive(5));
+
+        System.out.println(db.getAllHives().size());
+
+        for(Hive a : db.getAllHives()) {
+            System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getNumber());
+        }
     }
 
     @Override
