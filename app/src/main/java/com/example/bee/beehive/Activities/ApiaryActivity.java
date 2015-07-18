@@ -27,10 +27,10 @@ public class ApiaryActivity extends ActionBarActivity implements ListItems {
         setContentView(R.layout.activity_apiary);
 
         db.addApiary(new Apiary("PORTO"));
-
+        db.addApiary(new Apiary("LISBOA"));
         List<Apiary> apiaries = db.getAllApiaries();
         for(Apiary a : apiaries) {
-            System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName());
+            System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName() + " -- " + a.getID());
         }
     }
 

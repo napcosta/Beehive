@@ -6,6 +6,7 @@ package com.example.bee.beehive;
 public class Hive {
 
 	int id;
+	int apiary_id;
 	int number;
 
 	public Hive(){}
@@ -14,9 +15,10 @@ public class Hive {
 		this.number = number;
 	}
 
-	public Hive(int id, String name)
+	public Hive(int id, int number, int apiary_id)
 	{
 		this.number = number;
+		this.apiary_id = apiary_id;
 		this.id = id;
 	}
 
@@ -33,6 +35,11 @@ public class Hive {
 	public int getNumber()
 	{
 		return number;
+	}
+
+	public int getApiaryID()
+	{
+		return apiary_id;
 	}
 
 	public void setName(int name)

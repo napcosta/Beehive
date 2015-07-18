@@ -35,18 +35,21 @@ public class DatabaseHandler extends SQLiteOpenHelper
     {
 
         String CREATE_APIARIES_TABLE = "CREATE TABLE " + TABLE_APIARIES + "(" +
-                    KEY_APIARY_ID + " INTEGER PRIMARY KEY," +
+                    KEY_APIARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     KEY_APIARY_NAME + " TEXT UNIQUE" +
                 ")";
         String CREATE_HIVES_TABLE = "CREATE TABLE " + TABLE_HIVES + "(" +
-                    KEY_HIVE_ID + " INTEGER PRIMARY KEY," +
-                    KEY_HIVE_NUMBER + " INTEGER UNIQUE," +
-                    " FOREIGN KEY (" + KEY_HIVE_NUMBER + ") REFERENCES " + TABLE_APIARIES + " (" + KEY_APIARY_ID + ")" +
-                ")";
+                    KEY_HIVE_ID + " INTEGER PRIMARY KEY  AUTOINCREMENT," +
+                    KEY_HIVE_NUMBER + " INTEGER," +
+                    KEY_APIARY_ID + " INTEGER," +
+                    " FOREIGN KEY (" + KEY_APIARY_ID + ") REFERENCES " + TABLE_APIARIES + " (" + KEY_APIARY_ID + ")," +
+                    " UNIQUE (" + KEY_APIARY_ID + ", " + KEY_HIVE_NUMBER + ")" +
+                    ")";
         db.execSQL(CREATE_APIARIES_TABLE);
         db.execSQL(CREATE_HIVES_TABLE);
         System.out.println("CREATING DATABASE");
     }
+
 
     // Upgrading database
     @Override
@@ -66,7 +69,6 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         ContentValues values = new ContentValues();
         values.put(KEY_APIARY_NAME, apiary.getName());
-      //  System.out.println(values.toString());
 
         try {
             db.insertOrThrow(TABLE_APIARIES, null, values);
@@ -82,9 +84,13 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         ContentValues values = new ContentValues();
         values.put(KEY_HIVE_NUMBER, hive.getNumber());
+        values.put(KEY_APIARY_ID, hive.getApiaryID());
 
-        db.insert(TABLE_HIVES, null, values);
-
+        try {
+            db.insertOrThrow(TABLE_HIVES, null, values);
+        } catch (SQLiteConstraintException e) {
+            System.out.println("EXCEPTION ----------------------> HIVE ALREADY EXISTS");
+        }
         db.close();
     }
 
@@ -109,7 +115,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     {
         List<Apiary> apiaryList = new ArrayList<Apiary>();
 
-        String selectQuery = "SELECT *FROM " + TABLE_APIARIES;
+        String selectQuery = "SELECT * FROM " + TABLE_APIARIES;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -125,25 +131,24 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiaryList;
     }
 
-    public List<Hive> getAllHives()
-    {
-        List<Hive> hiveList = new ArrayList<Hive>();
+    public List<Hive> getAllHives() {
+        List<Hive> hiveList = new ArrayList<>();
 
-        String selectQuery = "SELECT *FROM " + TABLE_HIVES;
+        String selectQuery = "SELECT * FROM hives";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst()) {
+
             do {
-                Hive hive = new Hive();
-                hive.setID(Integer.parseInt(cursor.getString(0)));
-                hive.setName(cursor.getInt(1));
+                Hive hive = new Hive(Integer.parseInt(cursor.getString(0)),Integer.parseInt(cursor.getString(1)),Integer.parseInt(cursor.getString(2)));
                 hiveList.add(hive);
             } while (cursor.moveToNext());
+
         }
+
         return hiveList;
     }
-
 
 }
