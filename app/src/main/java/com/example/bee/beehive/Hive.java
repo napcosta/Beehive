@@ -3,22 +3,22 @@ package com.example.bee.beehive;
 /**
  * Created by Nuno on 30/06/2015.
  */
-public class Hive {
+public class Hive extends dbListEntry {
 
 	int id;
 	int apiary_id;
-	int number;
+	int name;
 
 	public Hive(){}
-	public Hive(int number, int apiary_id)
+	public Hive(int name, int apiary_id)
 	{
-		this.number = number;
+		this.name = name;
 		this.apiary_id = apiary_id;
 	}
 
-	public Hive(int id, int number, int apiary_id)
+	public Hive(int id, int name, int apiary_id)
 	{
-		this.number = number;
+		this.name = name;
 		this.apiary_id = apiary_id;
 		this.id = id;
 	}
@@ -33,11 +33,6 @@ public class Hive {
 		this.id = id;
 	}
 
-	public int getNumber()
-	{
-		return number;
-	}
-
 	public int getApiaryID()
 	{
 		return apiary_id;
@@ -45,7 +40,12 @@ public class Hive {
 
 	public void setName(int name)
 	{
-		this.number = name;
+		this.name = name;
+	}
+
+	public String getName()
+	{
+		return String.valueOf(name);
 	}
 
 }

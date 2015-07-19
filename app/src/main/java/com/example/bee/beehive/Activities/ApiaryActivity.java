@@ -11,13 +11,14 @@ import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.ListItems;
 import com.example.bee.beehive.R;
+import com.example.bee.beehive.dbListEntry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class ApiaryActivity extends ActionBarActivity implements ListItems {
+public class ApiaryActivity extends ListItems {
 
     public DatabaseHandler db = new DatabaseHandler(this);
 
@@ -28,8 +29,8 @@ public class ApiaryActivity extends ActionBarActivity implements ListItems {
 
         db.addApiary(new Apiary("PORTO"));
         db.addApiary(new Apiary("LISBOA"));
-        List<Apiary> apiaries = db.getAllApiaries();
-        for(Apiary a : apiaries) {
+        List<dbListEntry> apiaries = db.getAllApiaries();
+        for(dbListEntry a : apiaries) {
             System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName() + " -- " + a.getID());
         }
     }
@@ -59,9 +60,8 @@ public class ApiaryActivity extends ActionBarActivity implements ListItems {
 
     public List<String> getData()
     {
-        List<String> str = convertToListOfStrings();
-        //return new ArrayList<String>(Arrays.asList(data));
-        return convertToListOfStrings();
+
+        return convertToListOfStrings(db.getAllApiaries());
     }
 
 	public Class getGoToClass()
@@ -69,16 +69,5 @@ public class ApiaryActivity extends ActionBarActivity implements ListItems {
 		return HiveActivity.class;
 	}
 
-    private List<String> convertToListOfStrings()
-    {
-        ArrayList<String> strings = new ArrayList<String>();
-
-       // List<Apiary> apiaries = db.getAllApiaries();
-
-        for(Apiary a : db.getAllApiaries()) {
-            strings.add(a != null ? a.getName() : null);
-        }
-        return strings;
-    }
 
 }

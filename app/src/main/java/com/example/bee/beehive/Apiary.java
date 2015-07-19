@@ -3,9 +3,8 @@ package com.example.bee.beehive;
 /**
  * Created by Nuno on 30/06/2015.
  */
-public class Apiary {
+public class Apiary extends dbListEntry {
 
-    int id;
     String name;
 
     public Apiary(){}
@@ -20,11 +19,6 @@ public class Apiary {
         this.id = id;
     }
 
-    public int getID()
-    {
-        return id;
-    }
-
     public void setID(int id)
     {
         this.id = id;
@@ -34,6 +28,7 @@ public class Apiary {
     {
         return name;
     }
+
 
     public void setName(String name)
     {

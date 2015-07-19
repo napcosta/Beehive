@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class HiveActivity extends ActionBarActivity implements ListItems {
+public class HiveActivity extends  ListItems {
 
     public DatabaseHandler db = new DatabaseHandler(this);
 
@@ -31,7 +31,7 @@ public class HiveActivity extends ActionBarActivity implements ListItems {
         System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives(1).size());
 
         for(Hive a : db.getAllHives(1)) {
-            System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getNumber());
+            System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getName());
         }
     }
 

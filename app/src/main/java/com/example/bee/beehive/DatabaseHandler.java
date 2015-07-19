@@ -83,7 +83,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_HIVE_NUMBER, hive.getNumber());
+        values.put(KEY_HIVE_NUMBER, hive.getName());
         values.put(KEY_APIARY_ID, hive.getApiaryID());
 
         try {
@@ -111,9 +111,9 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiary;
     }
 
-    public List<Apiary> getAllApiaries()
+    public List<dbListEntry> getAllApiaries()
     {
-        List<Apiary> apiaryList = new ArrayList<Apiary>();
+        List<dbListEntry> apiaryList = new ArrayList<dbListEntry>();
 
         String selectQuery = "SELECT * FROM " + TABLE_APIARIES;
 
