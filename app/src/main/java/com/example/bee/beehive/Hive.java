@@ -10,9 +10,10 @@ public class Hive {
 	int number;
 
 	public Hive(){}
-	public Hive(int number)
+	public Hive(int number, int apiary_id)
 	{
 		this.number = number;
+		this.apiary_id = apiary_id;
 	}
 
 	public Hive(int id, int number, int apiary_id)

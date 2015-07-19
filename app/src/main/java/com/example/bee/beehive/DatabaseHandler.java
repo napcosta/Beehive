@@ -131,10 +131,10 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiaryList;
     }
 
-    public List<Hive> getAllHives() {
+    public List<Hive> getAllHives(int apiary_id) {
         List<Hive> hiveList = new ArrayList<>();
 
-        String selectQuery = "SELECT * FROM hives";
+        String selectQuery = "SELECT * FROM " + TABLE_HIVES + " WHERE " + KEY_APIARY_ID + " = " + apiary_id;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

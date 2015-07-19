@@ -24,14 +24,13 @@ public class HiveActivity extends ActionBarActivity implements ListItems {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hive);
 
-        db.addHive(new Hive(0, 1, 1));
-        db.addHive(new Hive(1, 2, 1));
-        db.addHive(new Hive(2, 3, 1));
-        db.addHive(new Hive(3, 1, 2));
-        db.addHive(new Hive(4, 1, 2));
-        System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives().size());
+        db.addHive(new Hive(1, 1));
+        db.addHive(new Hive(2, 1));
+        db.addHive(new Hive(2, 2));
+        db.addHive(new Hive(3, 2));
+        System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives(1).size());
 
-        for(Hive a : db.getAllHives()) {
+        for(Hive a : db.getAllHives(1)) {
             System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getNumber());
         }
     }
