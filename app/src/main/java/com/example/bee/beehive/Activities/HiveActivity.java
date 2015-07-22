@@ -1,5 +1,6 @@
 package com.example.bee.beehive.Activities;
 
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.Hive;
 import com.example.bee.beehive.ListItems;
 import com.example.bee.beehive.R;
+import com.example.bee.beehive.dbListEntry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +32,7 @@ public class HiveActivity extends  ListItems {
         db.addHive(new Hive(3, 2));
         System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives(1).size());
 
-        for(Hive a : db.getAllHives(1)) {
+        for(dbListEntry a : db.getAllHives(1)) {
             System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getName());
         }
     }
@@ -57,15 +59,15 @@ public class HiveActivity extends  ListItems {
         return super.onOptionsItemSelected(item);
     }
 
-    public List<String> getData()
+    public List<String> getData(int apiary_id, int hive_id)
     {
-        String[] data = {
-                "001",
-                "002",
-                "003"
-        };
+        return convertToListOfStrings(db.getAllHives(apiary_id));
 
-        return new ArrayList<String>(Arrays.asList(data));
+    }
+
+    public Cursor getCursor()
+    {
+        return null;
     }
 
     public Class getGoToClass()

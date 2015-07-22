@@ -1,6 +1,7 @@
 package com.example.bee.beehive.Activities;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,6 +29,7 @@ public class ApiaryActivity extends ListItems {
         setContentView(R.layout.activity_apiary);
 
         db.addApiary(new Apiary("PORTO"));
+        //db.deleteApiary(new Apiary(1,"PORTO"));
         db.addApiary(new Apiary("LISBOA"));
         List<dbListEntry> apiaries = db.getAllApiaries();
         for(dbListEntry a : apiaries) {
@@ -58,7 +60,7 @@ public class ApiaryActivity extends ListItems {
         return super.onOptionsItemSelected(item);
     }
 
-    public List<String> getData()
+    public List<String> getData(int apiary_id, int hive_id)
     {
 
         return convertToListOfStrings(db.getAllApiaries());
@@ -69,5 +71,9 @@ public class ApiaryActivity extends ListItems {
 		return HiveActivity.class;
 	}
 
+    public Cursor getCursor()
+    {
+        return db.getAllApiariesCursor();
+    }
 
 }

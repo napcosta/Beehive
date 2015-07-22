@@ -20,7 +20,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "beehiveDB";
     private static final String TABLE_HIVES = "hives";
     private static final String TABLE_APIARIES = "apiaries";
-    private static final String KEY_APIARY_ID = "apiary_id";
+    private static final String KEY_APIARY_ID = "_id";
     private static final String KEY_HIVE_ID = "hive_id";
     private static final String KEY_APIARY_NAME = "apiary_name";
     private static final String KEY_HIVE_NUMBER = "hive_number";
@@ -78,6 +78,13 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.close();
     }
 
+    public void deleteApiary(Apiary apiary)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_APIARIES, KEY_APIARY_ID + " =?", new String[]{String.valueOf(apiary.getID())});
+        db.close();
+    }
+
     public void addHive(Hive hive)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -111,6 +118,17 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiary;
     }
 
+    public Cursor getAllApiariesCursor()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_APIARIES;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
     public List<dbListEntry> getAllApiaries()
     {
         List<dbListEntry> apiaryList = new ArrayList<dbListEntry>();
@@ -131,8 +149,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiaryList;
     }
 
-    public List<Hive> getAllHives(int apiary_id) {
-        List<Hive> hiveList = new ArrayList<>();
+    public List<dbListEntry> getAllHives(int apiary_id) {
+        List<dbListEntry> hiveList = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " + TABLE_HIVES + " WHERE " + KEY_APIARY_ID + " = " + apiary_id;
 
