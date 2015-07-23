@@ -19,7 +19,7 @@ public abstract class ListItems extends ActionBarActivity
 
     public abstract Class getGoToClass();
 
-    public abstract Cursor getCursor();
+    public abstract Cursor getCursor(int apiary_id, int hive_id);
 
     protected List<String> convertToListOfStrings(List<dbListEntry> list_entries)
     {
@@ -30,4 +30,6 @@ public abstract class ListItems extends ActionBarActivity
         }
         return strings;
     }
+
+    public abstract String getColumnName();
 }

@@ -1,10 +1,12 @@
 package com.example.bee.beehive.Activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.Hive;
@@ -20,6 +22,7 @@ import java.util.List;
 public class HiveActivity extends  ListItems {
 
     public DatabaseHandler db = new DatabaseHandler(this);
+    Intent intent = getIntent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class HiveActivity extends  ListItems {
         for(dbListEntry a : db.getAllHives(1)) {
             System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getName());
         }
+
     }
 
     @Override
@@ -65,9 +69,16 @@ public class HiveActivity extends  ListItems {
 
     }
 
-    public Cursor getCursor()
+    public String getColumnName()
     {
-        return null;
+        return db.getHiveColumnName();
+    }
+
+    public Cursor getCursor(int i, int a)
+    {
+      //  long asd = getIntent().getLongExtra("current_apiary", -1);
+      //  Toast.makeText(this, "" + asd, Toast.LENGTH_LONG).show();
+        return db.getHivesCursor(getIntent().getIntExtra("apiary_id", -1));
     }
 
     public Class getGoToClass()

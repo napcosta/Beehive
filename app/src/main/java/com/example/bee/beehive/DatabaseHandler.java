@@ -78,6 +78,16 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.close();
     }
 
+    public String getApiaryColumnName()
+    {
+        return KEY_APIARY_NAME;
+    }
+
+    public String getHiveColumnName()
+    {
+        return KEY_HIVE_NUMBER;
+    }
+
     public void deleteApiary(Apiary apiary)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -118,10 +128,21 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiary;
     }
 
-    public Cursor getAllApiariesCursor()
+    public Cursor getApiariesCursor()
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String selectQuery = "SELECT * FROM " + TABLE_APIARIES;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
+    public Cursor getHivesCursor(int apiary_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_HIVES + " WHERE " + KEY_APIARY_ID + " = " + apiary_id;
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor != null) {
             cursor.moveToFirst();

@@ -66,14 +66,19 @@ public class ApiaryActivity extends ListItems {
         return convertToListOfStrings(db.getAllApiaries());
     }
 
+    public String getColumnName()
+    {
+        return db.getApiaryColumnName();
+    }
+
 	public Class getGoToClass()
 	{
 		return HiveActivity.class;
 	}
 
-    public Cursor getCursor()
+    public Cursor getCursor(int apiary_id, int hive_id)
     {
-        return db.getAllApiariesCursor();
+        return db.getApiariesCursor();
     }
 
 }

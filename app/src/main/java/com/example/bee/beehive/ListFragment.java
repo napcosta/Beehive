@@ -25,8 +25,6 @@ import java.util.List;
  */
 public class ListFragment extends Fragment {
 
-    ArrayAdapter<String> mListAdapter;
-
     private List exampleListItemList;
 
     public ListFragment() {
@@ -40,9 +38,8 @@ public class ListFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview_item);
 
-
         //Maybe this should be placed on each class
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item, ((ListItems)getActivity()).getCursor(), new String[] {"apiary_name"}, new int[] {R.id.list_item_textview}, 0);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item, ((ListItems)getActivity()).getCursor(1,1), new String[] {((ListItems) getActivity()).getColumnName() /*"apiary_name"*/}, new int[] {R.id.list_item_textview}, 0);
 
         listView.setAdapter(adapter);
 /*
@@ -60,10 +57,12 @@ public class ListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //    Intent intent = new Intent(getActivity(), ((ListItems) getActivity()).getGoToClass());
-              //  startActivity(intent);
+                Intent intent = new Intent(getActivity(), ((ListItems) getActivity()).getGoToClass());
+                intent.putExtra("apiary_id",(int) id);
+                intent.putExtra("hive_id", -1);
+                startActivity(intent);
 
-                Toast.makeText(getActivity(), "id: " + id, Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getActivity(), getActivity().getClass().getSimpleName(), Toast.LENGTH_LONG).show();
             }
         });
 
