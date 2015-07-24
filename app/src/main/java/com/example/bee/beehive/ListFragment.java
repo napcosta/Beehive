@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
-import com.example.bee.beehive.Activities.AddOverlay;
 import com.example.bee.beehive.Activities.ListItems;
 
 import java.util.List;
@@ -51,9 +49,8 @@ public class ListFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_add) {
 
-			startActivity(new Intent(getActivity(), AddOverlay.class));
-
-            //Toast.makeText(getActivity(), "ADD", Toast.LENGTH_LONG).show();
+		//	startActivity(new Intent(getActivity(), AddOverlay.class));
+            ((ListItems) getActivity()).showDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);

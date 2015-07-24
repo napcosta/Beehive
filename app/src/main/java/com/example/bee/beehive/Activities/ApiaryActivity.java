@@ -1,9 +1,13 @@
 package com.example.bee.beehive.Activities;
 
+import android.app.FragmentManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
@@ -15,7 +19,7 @@ import java.util.List;
 
 public class ApiaryActivity extends ListItems {
 
-    public DatabaseHandler db = new DatabaseHandler(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,13 @@ public class ApiaryActivity extends ListItems {
         for(dbListEntry a : apiaries) {
             System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName() + " -- " + a.getID());
         }
+    }
+
+    public void showDialog()
+    {
+        AddOverlay addOverlay = new AddOverlay();
+        addOverlay.show(getFragmentManager(), "Add Overlay");
+
     }
 
 /*

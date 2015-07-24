@@ -1,8 +1,11 @@
 package com.example.bee.beehive.Activities;
 
+import android.app.FragmentManager;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 
+import com.example.bee.beehive.Apiary;
+import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.dbListEntry;
 
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import java.util.Objects;
  */
 public abstract class ListItems extends ActionBarActivity
 {
+    public DatabaseHandler db = new DatabaseHandler(this);
 
     protected List<Object> db_entries;
 
@@ -31,6 +35,25 @@ public abstract class ListItems extends ActionBarActivity
             strings.add(a != null ? a.getName() : null);
         }
         return strings;
+    }
+
+    public void add(String apiary_name)
+    {
+        db.addApiary(new Apiary(apiary_name));
+        reloadActivity();
+    }
+
+    private void reloadActivity()
+    {
+        finish();
+        startActivity(getIntent());
+    }
+
+    public void showDialog()
+    {
+        FragmentManager manager = getFragmentManager();
+        AddOverlay addOverlay = new AddOverlay();
+        addOverlay.show(manager, "AddOverlay");
     }
 
     public abstract String getColumnName();
