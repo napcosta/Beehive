@@ -24,6 +24,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.ApiaryActivity" />
         </activity>
+        <activity
+            android:name=".Activities.AddOverlay"
+            android:theme="@style/AppTheme.OverlayTheme"
+            android:label="@string/title_activity_add_overlay" >
+        </activity>
     </application>
 
 </manifest>

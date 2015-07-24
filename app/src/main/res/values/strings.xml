@@ -2,5 +2,7 @@
     <string name="app_name">Beehive</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_add">Add</string>
     <string name="title_activity_hive">Hive</string>
+    <string name="title_activity_add_overlay">AddOverlay</string>
 </resources>

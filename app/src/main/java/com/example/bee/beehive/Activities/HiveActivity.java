@@ -2,20 +2,15 @@ package com.example.bee.beehive.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.Hive;
-import com.example.bee.beehive.ListItems;
 import com.example.bee.beehive.R;
 import com.example.bee.beehive.dbListEntry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -44,7 +39,7 @@ public class HiveActivity extends  ListItems {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_hive, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 

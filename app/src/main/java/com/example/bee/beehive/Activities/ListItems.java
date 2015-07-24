@@ -1,7 +1,9 @@
-package com.example.bee.beehive;
+package com.example.bee.beehive.Activities;
 
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
+
+import com.example.bee.beehive.dbListEntry;
 
 import java.util.ArrayList;
 import java.util.List;

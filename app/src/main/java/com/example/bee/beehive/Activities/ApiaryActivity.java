@@ -1,21 +1,15 @@
 package com.example.bee.beehive.Activities;
 
-import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
-import com.example.bee.beehive.ListItems;
 import com.example.bee.beehive.R;
 import com.example.bee.beehive.dbListEntry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -37,15 +31,15 @@ public class ApiaryActivity extends ListItems {
         }
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_apiary, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-
-    @Override
+*/
+  /*  @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -59,7 +53,7 @@ public class ApiaryActivity extends ListItems {
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
     public List<String> getData(int apiary_id, int hive_id)
     {
 
