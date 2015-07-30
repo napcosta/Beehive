@@ -10,10 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
-import com.example.bee.beehive.Activities.ListItems;
+import com.example.bee.beehive.Activities.ApiaryActivity;
+import com.example.bee.beehive.Activities.ListItem;
 
 import java.util.List;
 
@@ -22,6 +26,8 @@ import java.util.List;
  * A placeholder fragment containing a simple view.
  */
 public class ListFragment extends Fragment {
+
+	public CustomCursorAdapter cursorAdapter;
 
     public ListFragment() {
     }
@@ -50,7 +56,7 @@ public class ListFragment extends Fragment {
         if (id == R.id.action_add) {
 
 		//	startActivity(new Intent(getActivity(), AddOverlay.class));
-            ((ListItems) getActivity()).showDialog();
+            ((ListItem) getActivity()).showDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -63,27 +69,35 @@ public class ListFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview_item);
 
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+ /*       SimpleCursorAdapter adapter = new SimpleCursorAdapter(
                 getActivity(),
                 R.layout.list_item,
-                ((ListItems)getActivity()).getCursor(1,1),
-                new String[] {((ListItems) getActivity()).getColumnName()},
+                ((ListItem)getActivity()).getCursor(1,1),
+                new String[] {((ListItem) getActivity()).getColumnName()},
                 new int[] {R.id.list_item_textview}, 0);
 
-        listView.setAdapter(adapter);
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ((ListItems) getActivity()).getGoToClass());
-                intent.putExtra("apiary_id",(int) id);
+                Intent intent = new Intent(getActivity(), ((ListItem) getActivity()).getGoToClass());
+                intent.putExtra("apiary_id", (int) id);
                 intent.putExtra("hive_id", -1);
                 startActivity(intent);
 
             }
-        });
+        });*/
+
+
+        cursorAdapter = new CustomCursorAdapter(getActivity(), ((ListItem)getActivity()).getCursor(1,1), 0);
+        listView.setAdapter(cursorAdapter);
+
+		((ListItem)getActivity()).setCursorAdapter(cursorAdapter);
 
         return rootView;
 
     }
+
 }

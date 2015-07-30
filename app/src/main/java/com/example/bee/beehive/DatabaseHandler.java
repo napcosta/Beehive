@@ -88,10 +88,10 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return KEY_HIVE_NUMBER;
     }
 
-    public void deleteApiary(Apiary apiary)
+    public void deleteApiary(int id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_APIARIES, KEY_APIARY_ID + " =?", new String[]{String.valueOf(apiary.getID())});
+        db.delete(TABLE_APIARIES, KEY_APIARY_ID + " =?", new String[]{String.valueOf(id)});
         db.close();
     }
 

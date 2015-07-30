@@ -14,7 +14,7 @@ import com.example.bee.beehive.dbListEntry;
 import java.util.List;
 
 
-public class HiveActivity extends  ListItems {
+public class HiveActivity extends  ListItem {
 
     public DatabaseHandler db = new DatabaseHandler(this);
     Intent intent = getIntent();
@@ -58,9 +58,10 @@ public class HiveActivity extends  ListItems {
         return super.onOptionsItemSelected(item);
     }
 
-    public List<String> getData(int apiary_id, int hive_id)
+    public List<dbListEntry> getData(int apiary_id, int hive_id)
     {
-        return convertToListOfStrings(db.getAllHives(apiary_id));
+        return db.getAllApiaries();
+        //return convertToListOfStrings(db.getAllHives(apiary_id));
 
     }
 
@@ -71,8 +72,7 @@ public class HiveActivity extends  ListItems {
 
     public Cursor getCursor(int i, int a)
     {
-      //  long asd = getIntent().getLongExtra("current_apiary", -1);
-      //  Toast.makeText(this, "" + asd, Toast.LENGTH_LONG).show();
+        //System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ " + getIntent().getIntExtra("apiary_id", -1));
         return db.getHivesCursor(getIntent().getIntExtra("apiary_id", -1));
     }
 

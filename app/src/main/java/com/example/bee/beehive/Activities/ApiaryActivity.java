@@ -11,13 +11,14 @@ import android.widget.Toast;
 
 import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
+import com.example.bee.beehive.ListFragment;
 import com.example.bee.beehive.R;
 import com.example.bee.beehive.dbListEntry;
 
 import java.util.List;
 
 
-public class ApiaryActivity extends ListItems {
+public class ApiaryActivity extends ListItem {
 
 
 
@@ -42,33 +43,18 @@ public class ApiaryActivity extends ListItems {
 
     }
 
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-*/
-  /*  @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
-    public List<String> getData(int apiary_id, int hive_id)
+    public List<dbListEntry> getData(int apiary_id, int hive_id)
     {
+        return db.getAllApiaries();
+        //return convertToListOfStrings(db.getAllApiaries());
+    }
 
-        return convertToListOfStrings(db.getAllApiaries());
+    public void deleteButton(View view) {
+        System.out.println(view.getTag());
+        db.deleteApiary(Integer.valueOf(view.getTag().toString()));
+        cursorAdapter.changeCursor(getCursor(1, 1));
+        //cursorAdapter.notifyDataSetChanged();
     }
 
     public String getColumnName()
@@ -83,6 +69,8 @@ public class ApiaryActivity extends ListItems {
 
     public Cursor getCursor(int apiary_id, int hive_id)
     {
+       // System.out.println();
+       // return db.getHivesCursor(11);
         return db.getApiariesCursor();
     }
 

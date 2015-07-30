@@ -29,7 +29,7 @@ public class AddOverlay extends DialogFragment {
 				EditText input = (EditText) view.findViewById(R.id.ApiaryNameInput);
 				System.out.println(input.getText().toString());
 
-				((ListItems) getActivity()).add(input.getText().toString());
+				((ListItem) getActivity()).add(input.getText().toString());
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			@Override

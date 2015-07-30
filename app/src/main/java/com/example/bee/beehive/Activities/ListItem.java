@@ -3,6 +3,7 @@ package com.example.bee.beehive.Activities;
 import android.app.FragmentManager;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
+import com.example.bee.beehive.CustomCursorAdapter;
 
 import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
@@ -15,13 +16,16 @@ import java.util.Objects;
 /**
  * Created by Nuno on 13/06/2015.
  */
-public abstract class ListItems extends ActionBarActivity
+public abstract class ListItem extends ActionBarActivity
 {
+
+    public CustomCursorAdapter cursorAdapter;
+
     public DatabaseHandler db = new DatabaseHandler(this);
 
     protected List<Object> db_entries;
 
-    public abstract List<String> getData(int apiary_id, int hive_id);
+    public abstract List<dbListEntry> getData(int apiary_id, int hive_id);
 
     public abstract Class getGoToClass();
 
@@ -36,6 +40,7 @@ public abstract class ListItems extends ActionBarActivity
         }
         return strings;
     }
+
 
     public void add(String apiary_name)
     {
@@ -56,5 +61,16 @@ public abstract class ListItems extends ActionBarActivity
         addOverlay.show(manager, "AddOverlay");
     }
 
+    /** Called when the user touches the button */
+   /* public void sendMessage(View view) {
+        System.out.println(view.toString());
+    }
+*/
     public abstract String getColumnName();
+
+	public void setCursorAdapter(CustomCursorAdapter adapter)
+	{
+		cursorAdapter = adapter;
+	}
+	
 }
