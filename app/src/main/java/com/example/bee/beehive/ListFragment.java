@@ -43,7 +43,9 @@ public class ListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
+        menu.clear();
         inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -55,8 +57,9 @@ public class ListFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_add) {
 
-		//	startActivity(new Intent(getActivity(), AddOverlay.class));
-            ((ListItem) getActivity()).showDialog();
+		//	System.out.println(getActivity().getClass().getSimpleName().toString().equals(ApiaryActivity.class.getSimpleName().toString()));
+			//if (getActivity().getClass().getSimpleName().toString().equals(ApiaryActivity.class.getSimpleName().toString()))
+           		((ListItem) getActivity()).showDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);

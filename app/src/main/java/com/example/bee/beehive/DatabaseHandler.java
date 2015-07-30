@@ -78,12 +78,22 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.close();
     }
 
-    public String getApiaryColumnName()
+    public String getKeyApiaryName()
     {
         return KEY_APIARY_NAME;
     }
 
-    public String getHiveColumnName()
+    public String getKeyApiaryId()
+    {
+        return KEY_APIARY_ID;
+    }
+
+    public String getKeyHiveId()
+    {
+        return KEY_HIVE_ID;
+    }
+
+    public String getKeyHiveName()
     {
         return KEY_HIVE_NUMBER;
     }
@@ -93,6 +103,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_APIARIES, KEY_APIARY_ID + " =?", new String[]{String.valueOf(id)});
         db.close();
+    }
+
+    public void deleteHive(int hive_id, int apiary_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_HIVES, KEY_APIARY_ID + " =? AND " + KEY_HIVE_ID + " =?", new String[] {String.valueOf(apiary_id), String.valueOf(hive_id)});
     }
 
     public void addHive(Hive hive)

@@ -21,7 +21,6 @@ import java.util.List;
 public class ApiaryActivity extends ListItem {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +50,20 @@ public class ApiaryActivity extends ListItem {
     }
 
     public void deleteButton(View view) {
-        System.out.println(view.getTag());
+       // System.out.println("GET TAG -> " + view.getTag().toString());
         db.deleteApiary(Integer.valueOf(view.getTag().toString()));
         cursorAdapter.changeCursor(getCursor(1, 1));
-        //cursorAdapter.notifyDataSetChanged();
     }
 
-    public String getColumnName()
+    public String getKeyName()
     {
-        return db.getApiaryColumnName();
+        return db.getKeyApiaryName();
     }
+
+	public String getKeyId()
+	{
+		return db.getKeyApiaryId();
+	}
 
 	public Class getGoToClass()
 	{

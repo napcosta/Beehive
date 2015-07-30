@@ -19,6 +19,8 @@ import java.util.Objects;
 public abstract class ListItem extends ActionBarActivity
 {
 
+    protected int clicked_id = -1;
+
     public CustomCursorAdapter cursorAdapter;
 
     public DatabaseHandler db = new DatabaseHandler(this);
@@ -45,7 +47,7 @@ public abstract class ListItem extends ActionBarActivity
     public void add(String apiary_name)
     {
         db.addApiary(new Apiary(apiary_name));
-        reloadActivity();
+        cursorAdapter.changeCursor(getCursor(1, 1));
     }
 
     private void reloadActivity()
@@ -61,12 +63,14 @@ public abstract class ListItem extends ActionBarActivity
         addOverlay.show(manager, "AddOverlay");
     }
 
-    /** Called when the user touches the button */
-   /* public void sendMessage(View view) {
-        System.out.println(view.toString());
+    public void setClickedId(int id)
+    {
+        clicked_id = id;
     }
-*/
-    public abstract String getColumnName();
+
+    public abstract String getKeyName();
+
+    public abstract String getKeyId();
 
 	public void setCursorAdapter(CustomCursorAdapter adapter)
 	{

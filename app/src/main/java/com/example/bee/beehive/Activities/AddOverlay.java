@@ -30,6 +30,7 @@ public class AddOverlay extends DialogFragment {
 				System.out.println(input.getText().toString());
 
 				((ListItem) getActivity()).add(input.getText().toString());
+
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			@Override

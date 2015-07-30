@@ -2,10 +2,14 @@ package com.example.bee.beehive.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.wifi.SupplicantState;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.Hive;
 import com.example.bee.beehive.R;
@@ -65,10 +69,15 @@ public class HiveActivity extends  ListItem {
 
     }
 
-    public String getColumnName()
+    public String getKeyName()
     {
-        return db.getHiveColumnName();
+        return db.getKeyHiveName();
     }
+
+	public String getKeyId()
+	{
+		return db.getKeyHiveId();
+	}
 
     public Cursor getCursor(int i, int a)
     {
@@ -79,6 +88,20 @@ public class HiveActivity extends  ListItem {
     public Class getGoToClass()
     {
         return ApiaryActivity.class;
+    }
+
+	public void deleteButton(View view)
+	{
+		//System.out.println("GET TAG -> " + view.getTag().toString());
+		db.deleteHive(Integer.valueOf(view.getTag().toString()), getIntent().getIntExtra("apiary_id", -1));
+		cursorAdapter.changeCursor(getCursor(1, 1));
+	}
+
+    public void add(String hive_name)
+    {
+		//System.out.println(getIntent().getIntExtra("apiary_id", -1));
+		db.addHive(new Hive(Integer.parseInt(hive_name), getIntent().getIntExtra("apiary_id", -1)));
+        cursorAdapter.changeCursor(getCursor(clicked_id, 1));
     }
 
 }
