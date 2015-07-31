@@ -56,10 +56,7 @@ public class ListFragment extends Fragment {
         // as you specify a parent activity in AndroidManifest.xml
         int id = item.getItemId();
         if (id == R.id.action_add) {
-
-		//	System.out.println(getActivity().getClass().getSimpleName().toString().equals(ApiaryActivity.class.getSimpleName().toString()));
-			//if (getActivity().getClass().getSimpleName().toString().equals(ApiaryActivity.class.getSimpleName().toString()))
-           		((ListItem) getActivity()).showDialog();
+            ((ListItem) getActivity()).showDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -71,28 +68,6 @@ public class ListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_item_scroll, container, false);
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview_item);
-
- /*       SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                getActivity(),
-                R.layout.list_item,
-                ((ListItem)getActivity()).getCursor(1,1),
-                new String[] {((ListItem) getActivity()).getColumnName()},
-                new int[] {R.id.list_item_textview}, 0);
-
-
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ((ListItem) getActivity()).getGoToClass());
-                intent.putExtra("apiary_id", (int) id);
-                intent.putExtra("hive_id", -1);
-                startActivity(intent);
-
-            }
-        });*/
-
 
         cursorAdapter = new CustomCursorAdapter(getActivity(), ((ListItem)getActivity()).getCursor(1,1), 0);
         listView.setAdapter(cursorAdapter);

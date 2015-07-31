@@ -26,6 +26,8 @@ public class ApiaryActivity extends ListItem {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apiary);
 
+        setTitle("Apiaries");
+
         db.addApiary(new Apiary("PORTO"));
         //db.deleteApiary(new Apiary(1,"PORTO"));
         db.addApiary(new Apiary("LISBOA"));

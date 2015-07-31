@@ -21,22 +21,22 @@ import java.util.List;
 public class HiveActivity extends  ListItem {
 
     public DatabaseHandler db = new DatabaseHandler(this);
-    Intent intent = getIntent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hive);
+        setTitle(getIntent().getStringExtra("apiary_name"));
 
         db.addHive(new Hive(1, 1));
         db.addHive(new Hive(2, 1));
         db.addHive(new Hive(2, 2));
         db.addHive(new Hive(3, 2));
-        System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives(1).size());
-
+     //   System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives(1).size());
+/*
         for(dbListEntry a : db.getAllHives(1)) {
             System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getName());
-        }
+        }*/
 
     }
 

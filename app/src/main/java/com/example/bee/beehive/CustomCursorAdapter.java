@@ -40,9 +40,12 @@ public class CustomCursorAdapter extends CursorAdapter {
 
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
-		final int id = (int) cursor.getLong(cursor.getColumnIndex(((ListItem) context).getKeyId()));
+
 		TextView textView = (TextView) view.findViewById(R.id.list_item_textview);
+		final int id = (int) cursor.getLong(cursor.getColumnIndex(((ListItem) context).getKeyId()));
 		textView.setText(cursor.getString(cursor.getColumnIndex(((ListItem) context).getKeyName())));
+		final String apiary_name = textView.getText().toString();
+
 		ImageButton deleteButton = (ImageButton) view.findViewById(R.id.deleteButton);
 		deleteButton.setTag(id);
 
@@ -53,6 +56,7 @@ public class CustomCursorAdapter extends CursorAdapter {
 				((ListItem) activity).setClickedId(id);
 				Intent intent = new Intent(activity, ((ListItem) activity).getGoToClass());
 				intent.putExtra("apiary_id", id);
+				intent.putExtra("apiary_name", apiary_name);
 				intent.putExtra("hive_id", -1);
 				activity.startActivity(intent);
 			}
