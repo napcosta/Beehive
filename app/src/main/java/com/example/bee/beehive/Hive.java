@@ -28,11 +28,6 @@ public class Hive extends dbListEntry {
 		return id;
 	}
 
-	public void setID(int id)
-	{
-		this.id = id;
-	}
-
 	public int getApiaryID()
 	{
 		return apiary_id;

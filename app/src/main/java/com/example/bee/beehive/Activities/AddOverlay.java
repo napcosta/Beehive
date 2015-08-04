@@ -27,7 +27,6 @@ public class AddOverlay extends DialogFragment {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				EditText input = (EditText) view.findViewById(R.id.ApiaryNameInput);
-				System.out.println(input.getText().toString());
 
 				((ListItem) getActivity()).add(input.getText().toString());
 

@@ -1,6 +1,7 @@
 package com.example.bee.beehive.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.wifi.SupplicantState;
 import android.os.Bundle;
@@ -26,12 +27,18 @@ public class HiveActivity extends  ListItem {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hive);
-        setTitle(getIntent().getStringExtra("apiary_name"));
 
+        //setTitle(getIntent().getStringExtra("apiary_name"));
+		setTitle(mSharedPreferences.getString("apiary_name", ""));
         db.addHive(new Hive(1, 1));
         db.addHive(new Hive(2, 1));
         db.addHive(new Hive(2, 2));
         db.addHive(new Hive(3, 2));
+
+		//String restoredText = mSharedPreferences.getString("text", null);
+		//if (restoredText != nu)
+	//	System.out.println("Apiary -> " + mSharedPreferences.getInt("apiary_id", 0) + "Hive -> " + mSharedPreferences.getInt("hive_id", 0));
+
      //   System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives(1).size());
 /*
         for(dbListEntry a : db.getAllHives(1)) {
@@ -62,13 +69,6 @@ public class HiveActivity extends  ListItem {
         return super.onOptionsItemSelected(item);
     }
 
-    public List<dbListEntry> getData(int apiary_id, int hive_id)
-    {
-        return db.getAllApiaries();
-        //return convertToListOfStrings(db.getAllHives(apiary_id));
-
-    }
-
     public String getKeyName()
     {
         return db.getKeyHiveName();
@@ -81,26 +81,29 @@ public class HiveActivity extends  ListItem {
 
     public Cursor getCursor(int i, int a)
     {
-        //System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ " + getIntent().getIntExtra("apiary_id", -1));
-        return db.getHivesCursor(getIntent().getIntExtra("apiary_id", -1));
+		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+		System.out.println(mSharedPreferences.getInt("apiary_id", 0) + " ============vs============= " + mSharedPreferences.getInt("hive_id", 0));
+		return db.getHivesCursor(mSharedPreferences.getInt("apiary_id", 0));
+       // return db.getHivesCursor(getIntent().getIntExtra("apiary_id", -1));
     }
 
     public Class getGoToClass()
     {
-        return ApiaryActivity.class;
+        return ActionActivity.class;
     }
 
 	public void deleteButton(View view)
 	{
-		//System.out.println("GET TAG -> " + view.getTag().toString());
-		db.deleteHive(Integer.valueOf(view.getTag().toString()), getIntent().getIntExtra("apiary_id", -1));
+		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+		db.deleteHive(Integer.valueOf(view.getTag().toString()), mSharedPreferences.getInt("apiary_id", 0));
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
 
     public void add(String hive_name)
     {
-		//System.out.println(getIntent().getIntExtra("apiary_id", -1));
-		db.addHive(new Hive(Integer.parseInt(hive_name), getIntent().getIntExtra("apiary_id", -1)));
+		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+
+		db.addHive(new Hive(Integer.parseInt(hive_name), mSharedPreferences.getInt("apiary_id", 0)));
         cursorAdapter.changeCursor(getCursor(clicked_id, 1));
     }
 

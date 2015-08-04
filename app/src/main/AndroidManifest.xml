@@ -25,6 +25,14 @@
                 android:value=".Activities.ApiaryActivity" />
         </activity>
         <activity
+            android:name=".Activities.ActionActivity"
+            android:label="@string/title_activity_action"
+            android:parentActivityName=".Activities.HiveActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.HiveActivity" />
+        </activity>
+        <activity
             android:name=".Activities.AddOverlay"
             android:theme="@style/AppTheme.OverlayTheme"
             android:label="@string/title_activity_add_overlay" >

@@ -1,6 +1,7 @@
 package com.example.bee.beehive.Activities;
 
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import com.example.bee.beehive.CustomCursorAdapter;
@@ -19,30 +20,19 @@ import java.util.Objects;
 public abstract class ListItem extends ActionBarActivity
 {
 
+    public static final String PREFERENCES = "preferences";
+
+	SharedPreferences mSharedPreferences;
+
     protected int clicked_id = -1;
 
     public CustomCursorAdapter cursorAdapter;
 
     public DatabaseHandler db = new DatabaseHandler(this);
 
-    protected List<Object> db_entries;
-
-    public abstract List<dbListEntry> getData(int apiary_id, int hive_id);
-
     public abstract Class getGoToClass();
 
     public abstract Cursor getCursor(int apiary_id, int hive_id);
-
-    protected List<String> convertToListOfStrings(List<dbListEntry> list_entries)
-    {
-        ArrayList<String> strings = new ArrayList<String>();
-
-        for(dbListEntry a : list_entries) {
-            strings.add(a != null ? a.getName() : null);
-        }
-        return strings;
-    }
-
 
     public void add(String apiary_name)
     {
