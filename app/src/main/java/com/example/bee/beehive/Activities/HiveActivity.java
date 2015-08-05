@@ -82,7 +82,6 @@ public class HiveActivity extends  ListItem {
     public Cursor getCursor(int i, int a)
     {
 		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-		System.out.println(mSharedPreferences.getInt("apiary_id", 0) + " ============vs============= " + mSharedPreferences.getInt("hive_id", 0));
 		return db.getHivesCursor(mSharedPreferences.getInt("apiary_id", 0));
        // return db.getHivesCursor(getIntent().getIntExtra("apiary_id", -1));
     }

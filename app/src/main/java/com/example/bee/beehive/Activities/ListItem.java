@@ -4,6 +4,8 @@ import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+
 import com.example.bee.beehive.CustomCursorAdapter;
 
 import com.example.bee.beehive.Apiary;
@@ -33,6 +35,8 @@ public abstract class ListItem extends ActionBarActivity
     public abstract Class getGoToClass();
 
     public abstract Cursor getCursor(int apiary_id, int hive_id);
+
+	public abstract void deleteButton(View view);
 
     public void add(String apiary_name)
     {

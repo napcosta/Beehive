@@ -21,11 +21,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String TABLE_HIVES = "hives";
     private static final String TABLE_APIARIES = "apiaries";
     private static final String KEY_APIARY_ID = "_id";
+	private static final String KEY_HIVES_NUMBER = "hives_number";
     private static final String KEY_HIVE_ID = "hive_id";
     private static final String KEY_APIARY_NAME = "apiary_name";
     private static final String KEY_HIVE_NUMBER = "hive_number";
     private static final String TABLE_ACTIONS = "table_actions";
-    private static final String KEY_ACTIONS_ID = "_id";
+    private static final String KEY_ACTION_ID = "_id";
     private static final String KEY_ACTION_NAME = "action_name";
 
     public DatabaseHandler(Context context)
@@ -40,7 +41,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         String CREATE_APIARIES_TABLE = "CREATE TABLE " + TABLE_APIARIES + "(" +
                 KEY_APIARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                KEY_APIARY_NAME + " TEXT UNIQUE" +
+                KEY_APIARY_NAME + " TEXT UNIQUE," +
+				KEY_HIVES_NUMBER + " INTEGER" +
             ")";
         String CREATE_HIVES_TABLE = "CREATE TABLE " + TABLE_HIVES + "(" +
                 KEY_HIVE_ID + " INTEGER PRIMARY KEY  AUTOINCREMENT," +
@@ -51,7 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
             ")";
 
         String CREATE_ACTIONS_TABLE = "CREATE TABLE " + TABLE_ACTIONS + "(" +
-                KEY_ACTIONS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                KEY_ACTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 KEY_ACTION_NAME + " Text," +
                 KEY_HIVE_ID + " INTEGER," +
                 " FOREIGN KEY (" + KEY_HIVE_ID + ") REFERENCES " + TABLE_HIVES + " (" + KEY_HIVE_ID + ")," +
@@ -108,7 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
 	public String getKeyActionId()
 	{
-		return KEY_ACTIONS_ID;
+		return KEY_ACTION_ID;
 	}
 
 	public String getKeyActionName()
@@ -133,6 +135,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_HIVES, KEY_APIARY_ID + " =? AND " + KEY_HIVE_ID + " =?", new String[]{String.valueOf(apiary_id), String.valueOf(hive_id)});
     }
+
+	public void deleteAction(int action_id, int hive_id)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete(TABLE_ACTIONS, KEY_HIVE_ID + " =? AND " + KEY_ACTION_ID + " =?", new String[]{String.valueOf(hive_id), String.valueOf(action_id)});
+	}
 
     public void addHive(Hive hive)
     {
