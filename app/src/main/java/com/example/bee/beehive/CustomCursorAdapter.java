@@ -16,6 +16,8 @@ import com.example.bee.beehive.Activities.ApiaryActivity;
 import com.example.bee.beehive.Activities.HiveActivity;
 import com.example.bee.beehive.Activities.ListItem;
 
+import org.w3c.dom.Text;
+
 
 public class CustomCursorAdapter extends CursorAdapter {
 
@@ -42,10 +44,11 @@ public class CustomCursorAdapter extends CursorAdapter {
 	public void bindView(View view, final Context context, Cursor cursor) {
 
 
-
+		TextView subTextView = (TextView) view.findViewById(R.id.subText);
 		TextView textView = (TextView) view.findViewById(R.id.list_item_textview);
 		final int item_id = (int) cursor.getLong(cursor.getColumnIndex(((ListItem) context).getKeyId()));
 		textView.setText(cursor.getString(cursor.getColumnIndex(((ListItem) context).getKeyName())));
+		subTextView.setText(((ListItem) context).getSubText(item_id));
 		final String item_name = textView.getText().toString();
 
 		ImageButton deleteButton = (ImageButton) view.findViewById(R.id.deleteButton);

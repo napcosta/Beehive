@@ -19,7 +19,7 @@ import com.example.bee.beehive.dbListEntry;
 import java.util.List;
 
 
-public class HiveActivity extends  ListItem {
+public class HiveActivity extends ListItem {
 
     public DatabaseHandler db = new DatabaseHandler(this);
 
@@ -73,6 +73,11 @@ public class HiveActivity extends  ListItem {
     {
         return db.getKeyHiveName();
     }
+
+	@Override
+	public String getSubText(int id) {
+		return getKeyName();
+	}
 
 	public String getKeyId()
 	{

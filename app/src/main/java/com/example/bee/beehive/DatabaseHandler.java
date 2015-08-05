@@ -21,7 +21,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String TABLE_HIVES = "hives";
     private static final String TABLE_APIARIES = "apiaries";
     private static final String KEY_APIARY_ID = "_id";
-	private static final String KEY_HIVES_NUMBER = "hives_number";
+	private static final String KEY_HIVES_COUNT = "hives_count";
     private static final String KEY_HIVE_ID = "hive_id";
     private static final String KEY_APIARY_NAME = "apiary_name";
     private static final String KEY_HIVE_NUMBER = "hive_number";
@@ -41,8 +41,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         String CREATE_APIARIES_TABLE = "CREATE TABLE " + TABLE_APIARIES + "(" +
                 KEY_APIARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                KEY_APIARY_NAME + " TEXT UNIQUE," +
-				KEY_HIVES_NUMBER + " INTEGER" +
+                KEY_APIARY_NAME + " TEXT UNIQUE" +
             ")";
         String CREATE_HIVES_TABLE = "CREATE TABLE " + TABLE_HIVES + "(" +
                 KEY_HIVE_ID + " INTEGER PRIMARY KEY  AUTOINCREMENT," +
@@ -155,8 +154,22 @@ public class DatabaseHandler extends SQLiteOpenHelper
         } catch (SQLiteConstraintException e) {
             System.out.println("EXCEPTION ----------------------> HIVE ALREADY EXISTS");
         }
+		//db.execSQL("UPDATE " + TABLE_APIARIES + " SET " + KEY_HIVES_COUNT + " = " + KEY_HIVES_COUNT + " +1 WHERE " + KEY_APIARY_ID + " = " + hive.getApiaryID());
+
         db.close();
     }
+
+	public String getHiveCount(int apiary_id)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor mCount = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_HIVES + " WHERE " + KEY_APIARY_ID + " = " + apiary_id, null);
+		mCount.moveToFirst();
+		String count = mCount.getString(0);
+		db.close();
+
+		return count;
+	}
+
 
     public void addAction(Action action)
     {

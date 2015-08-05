@@ -60,6 +60,12 @@ public class ActionActivity extends ListItem
 	}
 
 	@Override
+	public String getSubText(int id) {
+		return "";
+	}
+
+
+	@Override
 	public String getKeyId() {
 		return db.getKeyActionId();
 	}

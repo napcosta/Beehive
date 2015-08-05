@@ -64,6 +64,8 @@ public abstract class ListItem extends ActionBarActivity
 
     public abstract String getKeyName();
 
+	public abstract String getSubText(int id);
+
     public abstract String getKeyId();
 
 	public void setCursorAdapter(CustomCursorAdapter adapter)

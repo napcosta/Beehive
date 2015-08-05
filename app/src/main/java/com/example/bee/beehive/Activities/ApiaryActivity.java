@@ -27,6 +27,7 @@ public class ApiaryActivity extends ListItem {
         for(dbListEntry a : apiaries) {
             System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName() + " -- " + a.getID());
         }
+
     }
 
     public void showDialog()
@@ -47,7 +48,13 @@ public class ApiaryActivity extends ListItem {
         return db.getKeyApiaryName();
     }
 
-	public String getKeyId()
+    @Override
+    public String getSubText(int apiary_id)
+    {
+        return db.getHiveCount(apiary_id);
+    }
+
+    public String getKeyId()
 	{
 		return db.getKeyApiaryId();
 	}

@@ -4,17 +4,36 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?android:attr/listPreferredItemHeight"
-        android:gravity="center_vertical"
-        android:id="@+id/list_item_textview"/>
+        android:minHeight="?android:attr/listPreferredItemHeightSmall">
 
-   <ImageButton
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_item_textview"
+            android:text="text"
+            android:gravity="bottom"
+            android:textStyle="bold"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:height="35dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:text="Small Text"
+            android:id="@+id/subText"
+            android:height="30dp"/>
+    </LinearLayout>
+
+    <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/deleteButton"
