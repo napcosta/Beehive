@@ -21,11 +21,11 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String TABLE_HIVES = "hives";
     private static final String TABLE_APIARIES = "apiaries";
     private static final String KEY_APIARY_ID = "_id";
-	private static final String KEY_HIVES_COUNT = "hives_count";
     private static final String KEY_HIVE_ID = "hive_id";
     private static final String KEY_APIARY_NAME = "apiary_name";
     private static final String KEY_HIVE_NUMBER = "hive_number";
     private static final String TABLE_ACTIONS = "table_actions";
+	private static final String KEY_ACTION_DATE = "action_date";
     private static final String KEY_ACTION_ID = "_id";
     private static final String KEY_ACTION_NAME = "action_name";
 
@@ -46,15 +46,16 @@ public class DatabaseHandler extends SQLiteOpenHelper
         String CREATE_HIVES_TABLE = "CREATE TABLE " + TABLE_HIVES + "(" +
                 KEY_HIVE_ID + " INTEGER PRIMARY KEY  AUTOINCREMENT," +
                 KEY_HIVE_NUMBER + " INTEGER," +
-                KEY_APIARY_ID + " INTEGER," +
+                KEY_APIARY_ID + " DATE," +
                 " FOREIGN KEY (" + KEY_APIARY_ID + ") REFERENCES " + TABLE_APIARIES + " (" + KEY_APIARY_ID + ")," +
                 " UNIQUE (" + KEY_APIARY_ID + ", " + KEY_HIVE_NUMBER + ")" +
             ")";
 
         String CREATE_ACTIONS_TABLE = "CREATE TABLE " + TABLE_ACTIONS + "(" +
                 KEY_ACTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                KEY_ACTION_NAME + " Text," +
+                KEY_ACTION_NAME + " TEXT," +
                 KEY_HIVE_ID + " INTEGER," +
+				KEY_ACTION_DATE + "DATETIME," +
                 " FOREIGN KEY (" + KEY_HIVE_ID + ") REFERENCES " + TABLE_HIVES + " (" + KEY_HIVE_ID + ")," +
                 " UNIQUE (" + KEY_HIVE_ID + ")" +
             ")";

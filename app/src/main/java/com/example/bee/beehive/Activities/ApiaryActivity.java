@@ -51,7 +51,7 @@ public class ApiaryActivity extends ListItem {
     @Override
     public String getSubText(int apiary_id)
     {
-        return db.getHiveCount(apiary_id);
+        return db.getHiveCount(apiary_id) + " apiaries";
     }
 
     public String getKeyId()

@@ -10,5 +10,11 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
-
+<!--
+    <style name="cust_view" parent="@android:style/Widget.TextView" >
+        <item name="android:textSize" >@dimen/abc_text_size_medium_material</item>
+        <item name="android:textStyle" >bold</item>
+        <item name="android:itemPadding">20dp</item>
+    </style>nun
+-->
 </resources>
