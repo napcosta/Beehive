@@ -13,6 +13,8 @@ import com.example.bee.beehive.Action;
 import com.example.bee.beehive.Hive;
 import com.example.bee.beehive.R;
 
+import java.text.SimpleDateFormat;
+
 
 /**
  * Created by Nuno on 03/08/2015.
@@ -32,11 +34,11 @@ public class ActionActivity extends ListItem
 
 	}
 
-	public void add(int action_id)
+	public void add(int action_id, int day, int month, int year)
 	{
 		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
 
-		db.addAction(new Action(action_id, mSharedPreferences.getInt("apiary_id", 0), mSharedPreferences.getInt("hive_id", 0)));
+		db.addAction(new Action(action_id, day, month, year, mSharedPreferences.getInt("apiary_id", 0), mSharedPreferences.getInt("hive_id", 0)));
 
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
@@ -68,7 +70,7 @@ public class ActionActivity extends ListItem
 
 	@Override
 	public String getSubText(int id) {
-		return "";
+		return db.getActionDate(id);
 	}
 
 	public void showDialog()
@@ -77,26 +79,7 @@ public class ActionActivity extends ListItem
 		addOverlay.show(getFragmentManager(), "Add Overlay");
 
 	}
-/*
-	@Override
-	public void showDialog()
-	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		LayoutInflater inflater = getLayoutInflater();
-		View view = inflater.inflate(R.layout.action_add_overlay, null);
-		builder.setView(view);
 
-
-
-
-		spinner = (Spinner) view.findViewById(R.id.spinner);
-
-		ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.action_array, android.R.layout.simple_spinner_item);
-		spinner.setAdapter(adapter);
-
-		builder.show();
-	}
-*/
 	@Override
 	public String getKeyId() {
 		return db.getKeyActionId();

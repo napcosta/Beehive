@@ -48,8 +48,8 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 			public void onClick(DialogInterface dialog, int which) {
 				//EditText input = (EditText) view.findViewById(R.id.ApiaryNameInput);
 
-				System.out.println(datePicker.getMonth());
-			//	((ActionActivity) getActivity()).add(action_index);
+				//System.out.println(datePicker.getMonth());
+				((ActionActivity) getActivity()).add(action_index, datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
 
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
