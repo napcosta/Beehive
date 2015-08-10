@@ -24,7 +24,7 @@ import java.util.Date;
 public class AddActionOverlay extends DialogFragment implements AdapterView.OnItemSelectedListener {
 
 
-	int action_index;
+	String action_name;
 	DatePicker datePicker;
 
 	@Override
@@ -32,7 +32,7 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		final LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View view = inflater.inflate(R.layout.action_add_overlay, null);
-		Spinner spinner = (Spinner)  view.findViewById(R.id.spinner);
+		final Spinner spinner = (Spinner)  view.findViewById(R.id.spinner);
 		datePicker = (DatePicker) view.findViewById(R.id.datePicker);
 
 		ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.action_array, R.layout.spinner_item);
@@ -49,7 +49,7 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 				//EditText input = (EditText) view.findViewById(R.id.ApiaryNameInput);
 
 				//System.out.println(datePicker.getMonth());
-				((ActionActivity) getActivity()).add(action_index, datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
+				((ActionActivity) getActivity()).add(spinner.getSelectedItem().toString(), datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
 
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -65,9 +65,9 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		TextView text = (TextView) view;
-		action_index = position;
-		Toast.makeText(getActivity(), "You Selected " + id, Toast.LENGTH_SHORT).show();
+	//	TextView text = (TextView) view;
+	//	action_name = position;
+	//	Toast.makeText(getActivity(), "You Selected " + id, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

@@ -34,11 +34,11 @@ public class ActionActivity extends ListItem
 
 	}
 
-	public void add(int action_id, int day, int month, int year)
+	public void add(String action_name, int day, int month, int year)
 	{
 		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
 
-		db.addAction(new Action(action_id, day, month, year, mSharedPreferences.getInt("apiary_id", 0), mSharedPreferences.getInt("hive_id", 0)));
+		db.addAction(new Action(action_name, day, month, year, mSharedPreferences.getInt("apiary_id", 0), mSharedPreferences.getInt("hive_id", 0)));
 
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
@@ -46,7 +46,7 @@ public class ActionActivity extends ListItem
 	public void deleteButton(View view)
 	{
 		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-		db.deleteAction(Integer.valueOf(view.getTag().toString()), mSharedPreferences.getInt("apiary_id", 0));
+		db.deleteAction(Integer.valueOf(view.getTag().toString()), mSharedPreferences.getInt("hive_id", 0));
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
 

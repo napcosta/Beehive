@@ -170,6 +170,23 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		return count;
 	}
 
+	public String[] getNextAction(int hive_id)
+	{
+		String date = null;
+		String name = null;
+	//	String[] action = new String[2];
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_ACTIONS + " WHERE " + KEY_HIVE_ID + " = " + hive_id + " ORDER BY " + KEY_ACTION_DATE + " ASC", null);
+		cursor.moveToFirst();
+		db.close();
+		if (cursor != null && cursor.moveToFirst()) {
+			date = cursor.getString(cursor.getColumnIndex(KEY_ACTION_DATE));
+			name = cursor.getString(cursor.getColumnIndex(KEY_ACTION_NAME));
+		}
+		return new String[] {date, name};
+	}
+
+
     public String getActionDate(int action_id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -240,7 +257,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String selectQuery = "SELECT * FROM " + TABLE_ACTIONS + " WHERE " + KEY_HIVE_ID + " = " + hive_id;
+        String selectQuery = "SELECT * FROM " + TABLE_ACTIONS + " WHERE " + KEY_HIVE_ID + " = " + hive_id + " ORDER BY " + KEY_ACTION_DATE + " ASC";
 
 		/* QUERY QUE NOS DÁ TODAS AS ACÇÕES FUTURAS MAS NÃO PASSADAS */
 		//String selectQuery = "SELECT * FROM " + TABLE_ACTIONS + " WHERE " + KEY_HIVE_ID + " = " + hive_id + " AND " + KEY_ACTION_DATE + " >=  + date('now') ORDER BY " + KEY_ACTION_DATE + " ASC";
@@ -252,6 +269,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return cursor;
 
     }
+
+    //public
 
     public List<dbListEntry> getAllApiaries()
     {

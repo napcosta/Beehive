@@ -76,7 +76,8 @@ public class HiveActivity extends ListItem {
 
 	@Override
 	public String getSubText(int id) {
-		return getKeyName();
+		String[] action = db.getNextAction(id);
+        return action[1] + " scheduled on " + action[0];
 	}
 
 	public String getKeyId()
