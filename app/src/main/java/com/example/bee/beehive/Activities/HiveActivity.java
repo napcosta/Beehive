@@ -77,7 +77,11 @@ public class HiveActivity extends ListItem {
 	@Override
 	public String getSubText(int id) {
 		String[] action = db.getNextAction(id);
-        return action[1] + " scheduled on " + action[0];
+        if (action[1] == null) {
+            return "No action scheduled";
+        } else {
+            return action[1] + " scheduled on " + action[0];
+        }
 	}
 
 	public String getKeyId()

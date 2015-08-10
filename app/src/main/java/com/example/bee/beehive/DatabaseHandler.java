@@ -47,7 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
                 KEY_HIVE_ID + " INTEGER PRIMARY KEY  AUTOINCREMENT," +
                 KEY_HIVE_NUMBER + " INTEGER," +
                 KEY_APIARY_ID + " INTEGER," +
-                " FOREIGN KEY (" + KEY_APIARY_ID + ") REFERENCES " + TABLE_APIARIES + " (" + KEY_APIARY_ID + ")," +
+                " FOREIGN KEY (" + KEY_APIARY_ID + ") REFERENCES " + TABLE_APIARIES + " (" + KEY_APIARY_ID + ") ON DELETE CASCADE," +
                 " UNIQUE (" + KEY_APIARY_ID + ", " + KEY_HIVE_NUMBER + ")" +
             ")";
 
@@ -56,7 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
                 KEY_ACTION_NAME + " TEXT," +
 				KEY_ACTION_DATE + " TEXT," +
                 KEY_HIVE_ID + " INTEGER," +
-                " FOREIGN KEY (" + KEY_HIVE_ID + ") REFERENCES " + TABLE_HIVES + " (" + KEY_HIVE_ID + ")" +
+                " FOREIGN KEY (" + KEY_HIVE_ID + ") REFERENCES " + TABLE_HIVES + " (" + KEY_HIVE_ID + ") ON DELETE CASCADE" +
             ")";
         db.execSQL(CREATE_APIARIES_TABLE);
         db.execSQL(CREATE_HIVES_TABLE);
@@ -64,6 +64,14 @@ public class DatabaseHandler extends SQLiteOpenHelper
         System.out.println("CREATING DATABASE");
     }
 
+	@Override
+	public void onOpen (SQLiteDatabase db)
+	{
+		super.onOpen(db);
+		if(!db.isReadOnly()) {
+			db.execSQL("PRAGMA foreign_keys=ON");
+		}
+	}
 
     // Upgrading database
     @Override
@@ -183,6 +191,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 			date = cursor.getString(cursor.getColumnIndex(KEY_ACTION_DATE));
 			name = cursor.getString(cursor.getColumnIndex(KEY_ACTION_NAME));
 		}
+
 		return new String[] {date, name};
 	}
 
