@@ -53,7 +53,7 @@ public class ActionActivity extends ListItem
 	@Override
 	public Class getGoToClass()
 	{
-		return null;
+		return ActionActivity.class;
 	}
 
 	@Override

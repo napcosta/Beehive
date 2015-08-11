@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bee.beehive.R;
@@ -20,9 +21,14 @@ public class AddOverlay extends DialogFragment {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		final LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View view = inflater.inflate(R.layout.activity_add_overlay, null);
+		TextView overlayTitle = (TextView) view.findViewById(R.id.overlayAddApiaryOrHive);
+
 		builder.setView(view);
 
-
+		final String activity_name = getActivity().getClass().getSimpleName();
+		if (activity_name.equals(HiveActivity.class.getSimpleName())) {
+			overlayTitle.setText("Hive name");
+		}
 		builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

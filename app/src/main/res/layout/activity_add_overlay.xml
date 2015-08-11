@@ -12,7 +12,8 @@
         android:text="@string/add_apiary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/overlayAddApiaryOrHive"/>
 
     <EditText
         android:inputType="text"
