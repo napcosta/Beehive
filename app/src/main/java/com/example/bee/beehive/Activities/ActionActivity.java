@@ -72,7 +72,14 @@ public class ActionActivity extends ListItem
 	public String getSubText(int id) {
 		return db.getActionDate(id);
 	}
+/*
+	public void showDialog()
+	{
+		AddActionOverlay addOverlay = new AddActionOverlay();
+		addOverlay.show(getFragmentManager(), "Add Overlay");
 
+	}
+*/
 	public void showDialog()
 	{
 		AddActionOverlay addOverlay = new AddActionOverlay();

@@ -1,22 +1,16 @@
 package com.example.bee.beehive.Activities;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.app.FragmentManager;
 import android.database.Cursor;
-import android.net.wifi.SupplicantState;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.Hive;
 import com.example.bee.beehive.R;
-import com.example.bee.beehive.dbListEntry;
 
-import java.util.List;
 
 
 public class HiveActivity extends ListItem {
@@ -30,10 +24,10 @@ public class HiveActivity extends ListItem {
 
         //setTitle(getIntent().getStringExtra("apiary_name"));
 		setTitle(mSharedPreferences.getString("apiary_name", ""));
-        db.addHive(new Hive(1, 1));
-        db.addHive(new Hive(2, 1));
-        db.addHive(new Hive(2, 2));
-        db.addHive(new Hive(3, 2));
+        db.addHive(new Hive(1,2, 3, 1));
+        db.addHive(new Hive(2, 3, 4, 1));
+        db.addHive(new Hive(2, 4, 5, 2));
+        db.addHive(new Hive(3, 6, 7, 2));
 
 		//String restoredText = mSharedPreferences.getString("text", null);
 		//if (restoredText != nu)
@@ -108,12 +102,20 @@ public class HiveActivity extends ListItem {
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
 
-    public void add(String hive_name)
+    public void add(int hive_name, int honeycomb_count, int breedingcomb_count)
     {
 		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
 
-		db.addHive(new Hive(Integer.parseInt(hive_name), mSharedPreferences.getInt("apiary_id", 0)));
+		db.addHive(new Hive(hive_name, honeycomb_count, breedingcomb_count, mSharedPreferences.getInt("apiary_id", 0)));
         cursorAdapter.changeCursor(getCursor(clicked_id, 1));
+    }
+
+    @Override
+    public void showDialog()
+    {
+        FragmentManager manager = getFragmentManager();
+        AddHiveOverlay addOverlay = new AddHiveOverlay();
+        addOverlay.show(manager, "AddOverlay");
     }
 
 }

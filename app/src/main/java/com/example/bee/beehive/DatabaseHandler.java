@@ -24,6 +24,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String KEY_HIVE_ID = "hive_id";
     private static final String KEY_APIARY_NAME = "apiary_name";
     private static final String KEY_HIVE_NUMBER = "hive_number";
+    private static final String KEY_HONEYCOMB_COUNT = "honeycomb_count";
+	private static final String KEY_BREEDINGCOMB_COUNT = "breedingcomb_count";
     private static final String TABLE_ACTIONS = "table_actions";
 	private static final String KEY_ACTION_DATE = "action_date";
     private static final String KEY_ACTION_ID = "_id";
@@ -46,6 +48,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
         String CREATE_HIVES_TABLE = "CREATE TABLE " + TABLE_HIVES + "(" +
                 KEY_HIVE_ID + " INTEGER PRIMARY KEY  AUTOINCREMENT," +
                 KEY_HIVE_NUMBER + " INTEGER," +
+				KEY_HONEYCOMB_COUNT + " INTEGER," +
+				KEY_BREEDINGCOMB_COUNT + " INTEGER," +
                 KEY_APIARY_ID + " INTEGER," +
                 " FOREIGN KEY (" + KEY_APIARY_ID + ") REFERENCES " + TABLE_APIARIES + " (" + KEY_APIARY_ID + ") ON DELETE CASCADE," +
                 " UNIQUE (" + KEY_APIARY_ID + ", " + KEY_HIVE_NUMBER + ")" +

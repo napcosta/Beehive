@@ -53,7 +53,7 @@ public abstract class ListItem extends ActionBarActivity
     public void showDialog()
     {
         FragmentManager manager = getFragmentManager();
-        AddOverlay addOverlay = new AddOverlay();
+        AddApiaryOverlay addOverlay = new AddApiaryOverlay();
         addOverlay.show(manager, "AddOverlay");
     }
 

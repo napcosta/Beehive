@@ -8,12 +8,16 @@ public class Hive extends dbListEntry {
 	int id;
 	int apiary_id;
 	int name;
+	int honeycomb_count;
+	int breedingcomb_count;
 
 	public Hive(){}
-	public Hive(int name, int apiary_id)
+	public Hive(int name, int honeycomb_count, int breedingcomb_count, int apiary_id)
 	{
 		this.name = name;
 		this.apiary_id = apiary_id;
+		this.honeycomb_count = honeycomb_count;
+		this.breedingcomb_count = breedingcomb_count;
 	}
 
 	public Hive(int id, int name, int apiary_id)
