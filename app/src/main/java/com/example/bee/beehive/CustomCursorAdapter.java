@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,7 @@ public class CustomCursorAdapter extends CursorAdapter {
 
 
 		TextView subTextView = (TextView) view.findViewById(R.id.subText);
-		TextView textView = (TextView) view.findViewById(R.id.list_item_textview);
+		final TextView textView = (TextView) view.findViewById(R.id.list_item_textview);
 		final int item_id = (int) cursor.getLong(cursor.getColumnIndex(((ListItem) context).getKeyId()));
 		textView.setText(cursor.getString(cursor.getColumnIndex(((ListItem) context).getKeyName())));
 		subTextView.setText(((ListItem) context).getSubText(item_id));
@@ -81,7 +82,14 @@ public class CustomCursorAdapter extends CursorAdapter {
 		view.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View arg0) {
-				Toast.makeText(context, "Long Clicked ", Toast.LENGTH_SHORT).show();
+
+				if(activity_name.equals(ApiaryActivity.class.getSimpleName())) {
+					((ApiaryActivity) context).showDialog(item_name, item_id);
+					Toast.makeText(context, ""+context.getSharedPreferences(PREFERENCES, context.MODE_PRIVATE).getInt("apiary_id", 0), Toast.LENGTH_SHORT).show();
+
+				}
+
+				//Toast.makeText(context, ""+item_id, Toast.LENGTH_SHORT).show();
 				return true;
 			}
 		});

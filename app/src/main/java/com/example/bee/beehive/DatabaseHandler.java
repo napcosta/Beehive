@@ -244,6 +244,14 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiary;
     }
 
+    public void changeApiaryName(int id, String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "UPDATE " + TABLE_APIARIES + " SET " + KEY_APIARY_NAME + " = '" + name + "' WHERE " + KEY_APIARY_ID + " = " + id;
+        db.execSQL(selectQuery);
+        db.close();
+    }
+
     public Cursor getApiariesCursor()
     {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -3,6 +3,8 @@ package com.example.bee.beehive.Activities;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
 import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.Fragments.AddApiaryOverlay;
 import com.example.bee.beehive.R;
@@ -38,8 +40,21 @@ public class ApiaryActivity extends ListItem {
 
     }
 
+    public void showDialog(String name, int id)
+    {
+        AddApiaryOverlay addOverlay = new AddApiaryOverlay();
+        addOverlay.show(getFragmentManager(), "Add Overlay");
+        addOverlay.setName(name, id);
+
+    }
+
+	public void changeName(String name, int id)
+	{
+		db.changeApiaryName(id, name);
+		cursorAdapter.changeCursor(getCursor(1, 1));
+	}
+
     public void deleteButton(View view) {
-       // System.out.println("GET TAG -> " + view.getTag().toString());
         db.deleteApiary(Integer.valueOf(view.getTag().toString()));
         cursorAdapter.changeCursor(getCursor(1, 1));
     }

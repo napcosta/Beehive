@@ -11,31 +11,36 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bee.beehive.Activities.ApiaryActivity;
 import com.example.bee.beehive.Activities.ListItem;
 import com.example.bee.beehive.R;
 
 public class AddApiaryOverlay extends DialogFragment {
 
+	String name;
+	int id;
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		final LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View view = inflater.inflate(R.layout.activity_add_apiary_overlay, null);
-		TextView overlayTitle = (TextView) view.findViewById(R.id.overlayAddApiary);
 
 		builder.setView(view);
-/*
-		final String activity_name = getActivity().getClass().getSimpleName();
-		if (activity_name.equals(HiveActivity.class.getSimpleName())) {
-			overlayTitle.setText("Hive name");
-		}*/
-		builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+
+		EditText editText = (EditText)view.findViewById(R.id.ApiaryNameInput);
+		editText.setText(name);
+
+		builder.setPositiveButton((name == null) ? "Add" : "Change", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				EditText input = (EditText) view.findViewById(R.id.ApiaryNameInput);
 
-				((ListItem) getActivity()).add(input.getText().toString());
+				if (name == null) {
+					((ListItem) getActivity()).add(input.getText().toString());
+				} else {
+					((ApiaryActivity) getActivity()).changeName(input.getText().toString(), id);
+				}
 
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -47,6 +52,16 @@ public class AddApiaryOverlay extends DialogFragment {
 
 		Dialog dialog=builder.create();
 		return dialog;
+	}
+
+	public void setName(String name, int id)
+	{
+		//final LayoutInflater inflater = getActivity().getLayoutInflater();
+		//final View view = inflater.inflate(R.layout.activity_add_apiary_overlay, null);
+		//EditText editText = (EditText)view.findViewById(R.id.ApiaryNameInput);
+		//editText.setText(name);
+		this.name = name;
+		this.id = id;
 	}
 
 }
