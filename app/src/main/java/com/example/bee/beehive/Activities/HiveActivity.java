@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.bee.beehive.DatabaseHandler;
+import com.example.bee.beehive.Fragments.AddHiveOverlay;
 import com.example.bee.beehive.Hive;
 import com.example.bee.beehive.R;
 

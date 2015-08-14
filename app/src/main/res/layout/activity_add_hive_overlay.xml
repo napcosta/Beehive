@@ -19,9 +19,9 @@
             android:text="@string/add_hive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/overlayAddApiary"
-            android:paddingRight="20dp"/>
+            />
 
         <!-- THIS VIEW IS A HACK TO ALIGN THE INPUT TO THE RIGHT -->
         <View
@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Honeycombs"
             android:id="@+id/textView3"
             android:layout_below="@+id/linearLayout"
@@ -90,7 +90,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Breedingcombs"
             android:id="@+id/textView4"
             android:layout_below="@+id/linearLayout2"

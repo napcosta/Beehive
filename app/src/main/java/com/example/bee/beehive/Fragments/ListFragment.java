@@ -1,4 +1,4 @@
-package com.example.bee.beehive;
+package com.example.bee.beehive.Fragments;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.bee.beehive.Activities.ApiaryActivity;
 import com.example.bee.beehive.Activities.ListItem;
+import com.example.bee.beehive.CustomCursorAdapter;
+import com.example.bee.beehive.R;
 
 import java.util.List;
 

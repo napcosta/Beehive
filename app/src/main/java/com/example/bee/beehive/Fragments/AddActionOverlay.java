@@ -1,4 +1,4 @@
-package com.example.bee.beehive.Activities;
+package com.example.bee.beehive.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bee.beehive.Activities.ActionActivity;
 import com.example.bee.beehive.R;
 
 import org.w3c.dom.Text;
@@ -29,17 +30,17 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
 		final LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View view = inflater.inflate(R.layout.action_add_overlay, null);
 		final Spinner spinner = (Spinner)  view.findViewById(R.id.spinner);
 		datePicker = (DatePicker) view.findViewById(R.id.datePicker);
 
 		ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.action_array, R.layout.spinner_item);
-		//adapter.setDropDownViewResource(R.layout.spinner_item);
+
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(this);
-
+		builder.setTitle("Set action properties");
 		builder.setView(view);
 
 

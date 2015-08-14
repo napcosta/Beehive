@@ -10,11 +10,7 @@ import com.example.bee.beehive.CustomCursorAdapter;
 
 import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.DatabaseHandler;
-import com.example.bee.beehive.dbListEntry;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.example.bee.beehive.Fragments.AddApiaryOverlay;
 
 /**
  * Created by Nuno on 13/06/2015.

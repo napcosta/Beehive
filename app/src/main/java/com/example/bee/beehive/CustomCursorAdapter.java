@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bee.beehive.Activities.ActionActivity;
 import com.example.bee.beehive.Activities.ApiaryActivity;
@@ -74,6 +75,14 @@ public class CustomCursorAdapter extends CursorAdapter {
 
 				mPreferencesEditor.commit();
 				activity.startActivity(intent);
+			}
+		});
+
+		view.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View arg0) {
+				Toast.makeText(context, "Long Clicked ", Toast.LENGTH_SHORT).show();
+				return true;
 			}
 		});
 	}

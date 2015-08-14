@@ -6,6 +6,6 @@
           android:layout_height="48dp"
           android:gravity="left|center_vertical"
           android:textColor="@android:color/black"
-          android:textSize="20sp"
+          android:textAppearance="?android:attr/textAppearanceMedium"
           android:paddingLeft="10dp"
           android:textIsSelectable="false"/>

@@ -1,19 +1,12 @@
 package com.example.bee.beehive.Activities;
 
-import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.example.bee.beehive.Action;
-import com.example.bee.beehive.Hive;
+import com.example.bee.beehive.Fragments.AddActionOverlay;
 import com.example.bee.beehive.R;
-
-import java.text.SimpleDateFormat;
 
 
 /**
