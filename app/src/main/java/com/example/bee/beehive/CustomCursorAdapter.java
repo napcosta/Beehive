@@ -84,9 +84,10 @@ public class CustomCursorAdapter extends CursorAdapter {
 			public boolean onLongClick(View arg0) {
 
 				if(activity_name.equals(ApiaryActivity.class.getSimpleName())) {
-					((ApiaryActivity) context).showDialog(item_name, item_id);
-					Toast.makeText(context, ""+context.getSharedPreferences(PREFERENCES, context.MODE_PRIVATE).getInt("apiary_id", 0), Toast.LENGTH_SHORT).show();
-
+					((ApiaryActivity) context).popDialog(item_name, item_id); //TODO: should have the same approach as the other activities
+//					Toast.makeText(context, ""+context.getSharedPreferences(PREFERENCES, context.MODE_PRIVATE).getInt("apiary_id", 0), Toast.LENGTH_SHORT).show();
+				} else if (activity_name.equals(HiveActivity.class.getSimpleName())) {
+					((HiveActivity) context).popDialog(item_id);
 				}
 
 				//Toast.makeText(context, ""+item_id, Toast.LENGTH_SHORT).show();

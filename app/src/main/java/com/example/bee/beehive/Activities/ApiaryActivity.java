@@ -33,14 +33,14 @@ public class ApiaryActivity extends ListItem {
 
     }
 
-    public void showDialog()
+    public void popDialog()
     {
         AddApiaryOverlay addOverlay = new AddApiaryOverlay();
         addOverlay.show(getFragmentManager(), "Add Overlay");
 
     }
 
-    public void showDialog(String name, int id)
+    public void popDialog(String name, int id)
     {
         AddApiaryOverlay addOverlay = new AddApiaryOverlay();
         addOverlay.show(getFragmentManager(), "Add Overlay");

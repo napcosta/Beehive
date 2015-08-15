@@ -46,12 +46,8 @@ public abstract class ListItem extends ActionBarActivity
         startActivity(getIntent());
     }
 
-    public void showDialog()
-    {
-        FragmentManager manager = getFragmentManager();
-        AddApiaryOverlay addOverlay = new AddApiaryOverlay();
-        addOverlay.show(manager, "AddOverlay");
-    }
+    // Should be showDialog, but it would conflict with an android method.
+    public abstract void popDialog();
 
     public void setClickedId(int id)
     {

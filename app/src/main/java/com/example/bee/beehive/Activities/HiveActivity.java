@@ -111,12 +111,19 @@ public class HiveActivity extends ListItem {
         cursorAdapter.changeCursor(getCursor(clicked_id, 1));
     }
 
-    @Override
-    public void showDialog()
+
+    public void popDialog()
     {
-        FragmentManager manager = getFragmentManager();
+		AddHiveOverlay addOverlay = new AddHiveOverlay();
+		addOverlay.show(getFragmentManager(), "AddOverlay");
+    }
+
+    public void popDialog(int id)
+    {
         AddHiveOverlay addOverlay = new AddHiveOverlay();
-        addOverlay.show(manager, "AddOverlay");
+		addOverlay.onAttach(this);
+        addOverlay.show(getFragmentManager(), "AddOverlay");
+		addOverlay.setHiveData(id);
     }
 
 }

@@ -58,7 +58,7 @@ public class ListFragment extends Fragment {
         // as you specify a parent activity in AndroidManifest.xml
         int id = item.getItemId();
         if (id == R.id.action_add) {
-            ((ListItem) getActivity()).showDialog();
+            ((ListItem) getActivity()).popDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,5 +1,6 @@
 package com.example.bee.beehive.Fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -12,10 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bee.beehive.Activities.HiveActivity;
+import com.example.bee.beehive.DatabaseHandler;
 import com.example.bee.beehive.R;
 
 public class AddHiveOverlay extends DialogFragment {
 
+	int hive_number = -1;
+	int honeycomb_count;
+	int breedingcomb_count;
+	Activity activity;
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -25,12 +31,14 @@ public class AddHiveOverlay extends DialogFragment {
 		TextView overlayTitle = (TextView) view.findViewById(R.id.overlayAddApiary);
 		builder.setTitle("Set hive properties");
 		builder.setView(view);
-/*
-		final String activity_name = getActivity().getClass().getSimpleName();
-		if (activity_name.equals(HiveActivity.class.getSimpleName())) {
-			overlayTitle.setText("Hive name");
-		}*/
-		builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+
+		if (hive_number != -1) {
+			EditText editNumberText = (EditText) view.findViewById(R.id.HiveNameInput);
+			editNumberText.setText("" + hive_number);
+			editNumberText.setSelection(editNumberText.getText().length());
+		}
+
+		builder.setPositiveButton((hive_number == -1) ? "Add" : "Change", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				EditText hive_name = (EditText) view.findViewById(R.id.HiveNameInput);
@@ -53,6 +61,22 @@ public class AddHiveOverlay extends DialogFragment {
 
 		Dialog dialog=builder.create();
 		return dialog;
+	}
+
+	//TODO: onAttach should go to a base fragment class
+	@Override
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		this.activity = activity;
+	}
+
+	public void setHiveData(int id)
+	{
+		DatabaseHandler db = new DatabaseHandler(activity);
+	//	System.out.println(activity);
+		hive_number = db.getHiveNumber(id);
+
 	}
 
 }

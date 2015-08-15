@@ -30,6 +30,7 @@ public class AddApiaryOverlay extends DialogFragment {
 
 		EditText editText = (EditText)view.findViewById(R.id.ApiaryNameInput);
 		editText.setText(name);
+		editText.setSelection(editText.getText().length());
 
 		builder.setPositiveButton((name == null) ? "Add" : "Change", new DialogInterface.OnClickListener() {
 			@Override

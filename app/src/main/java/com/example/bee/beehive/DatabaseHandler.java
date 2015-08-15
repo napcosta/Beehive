@@ -209,6 +209,17 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return cursor.getString(0);
     }
 
+	public int getHiveNumber(int id)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery("SELECT " + KEY_HIVE_NUMBER + " FROM " + TABLE_HIVES + " WHERE " + KEY_HIVE_ID + " = " + id, null);
+
+		cursor.moveToFirst();
+
+		db.close();
+		return Integer.valueOf(cursor.getString(0));
+
+	}
 
     public void addAction(Action action)
     {
@@ -251,6 +262,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.execSQL(selectQuery);
         db.close();
     }
+
+
 
     public Cursor getApiariesCursor()
     {

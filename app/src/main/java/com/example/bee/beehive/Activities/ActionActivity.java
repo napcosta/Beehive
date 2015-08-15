@@ -73,7 +73,7 @@ public class ActionActivity extends ListItem
 
 	}
 */
-	public void showDialog()
+	public void popDialog()
 	{
 		AddActionOverlay addOverlay = new AddActionOverlay();
 		addOverlay.show(getFragmentManager(), "Add Overlay");
