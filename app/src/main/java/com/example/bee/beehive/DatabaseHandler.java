@@ -160,7 +160,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         values.put(KEY_HIVE_NUMBER, hive.getName());
         values.put(KEY_APIARY_ID, hive.getApiaryID());
-
+		values.put(KEY_HONEYCOMB_COUNT, hive.getHoneycombCount());
+		values.put(KEY_BREEDINGCOMB_COUNT, hive.getBreedingcombCount());
         try {
             db.insertOrThrow(TABLE_HIVES, null, values);
         } catch (SQLiteConstraintException e) {
@@ -221,6 +222,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
 	}
 
+
+
     public void addAction(Action action)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -255,6 +258,25 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return apiary;
     }
 
+    public Hive getHive(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+       // Cursor cursor = db.rawQuery("SELECT " + KEY_HIVE_NUMBER + " FROM " + TABLE_HIVES + " WHERE " + KEY_HIVE_ID + " = " + id, null);
+
+        Cursor cursor = db.query(TABLE_HIVES, null, KEY_HIVE_ID + "=?", new String[] {String.valueOf(id)}, null, null,null,null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+		Hive hive = new Hive(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), -1);
+      //  System.out.println(cursor.getString(0) + " - " + cursor.getString(1) + " - " + cursor.getString(2) + " - " + cursor.getString(3));
+	//	System.out.println(hive.getID() + " - " + cursor.getString(0));
+        db.close();
+        return hive;
+
+    }
+
+
     public void changeApiaryName(int id, String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -263,7 +285,19 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.close();
     }
 
+	public void changeHiveProperties(int id, String number, String honeycomb_count, String breedingcomb_count)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		String selectQuery =
+				"UPDATE " + TABLE_HIVES +
+				" SET " + KEY_HIVE_NUMBER + " = '" + number + "' ," +
+				KEY_HONEYCOMB_COUNT + " = '" + honeycomb_count + "' ," +
+				KEY_BREEDINGCOMB_COUNT + " = '" + breedingcomb_count +
+				"' WHERE " + KEY_HIVE_ID + " = " + id;
+		db.execSQL(selectQuery);
+		db.close();
 
+	}
 
     public Cursor getApiariesCursor()
     {
@@ -325,7 +359,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         }
         return apiaryList;
     }
-
+/*
     public List<dbListEntry> getAllHives(int apiary_id) {
         List<dbListEntry> hiveList = new ArrayList<>();
 
@@ -345,5 +379,5 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         return hiveList;
     }
-
+*/
 }

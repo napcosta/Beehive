@@ -14,13 +14,12 @@ import android.widget.Toast;
 
 import com.example.bee.beehive.Activities.HiveActivity;
 import com.example.bee.beehive.DatabaseHandler;
+import com.example.bee.beehive.Hive;
 import com.example.bee.beehive.R;
 
 public class AddHiveOverlay extends DialogFragment {
 
-	int hive_number = -1;
-	int honeycomb_count;
-	int breedingcomb_count;
+	Hive hive = null;
 	Activity activity;
 
 	@Override
@@ -32,24 +31,33 @@ public class AddHiveOverlay extends DialogFragment {
 		builder.setTitle("Set hive properties");
 		builder.setView(view);
 
-		if (hive_number != -1) {
-			EditText editNumberText = (EditText) view.findViewById(R.id.HiveNameInput);
-			editNumberText.setText("" + hive_number);
-			editNumberText.setSelection(editNumberText.getText().length());
+		if (hive != null) {
+			setEditText((EditText)view.findViewById(R.id.HiveNameInput), hive.getName());
+			setEditText((EditText)view.findViewById(R.id.honeycombs), hive.getHoneycombCount());
+			setEditText((EditText)view.findViewById(R.id.breedingcombs), hive.getBreedingcombCount());
 		}
 
-		builder.setPositiveButton((hive_number == -1) ? "Add" : "Change", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton((hive == null) ? "Add" : "Change", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				EditText hive_name = (EditText) view.findViewById(R.id.HiveNameInput);
-				EditText honecomb_count = (EditText) view.findViewById(R.id.honeycombs);
+				EditText honeycomb_count = (EditText) view.findViewById(R.id.honeycombs);
 				EditText breedingcomb_count = (EditText) view.findViewById(R.id.breedingcombs);
 
-				((HiveActivity) getActivity()).add(
-						Integer.parseInt(hive_name.getText().toString()),
-						Integer.parseInt(honecomb_count.getText().toString()),
-						Integer.parseInt(breedingcomb_count.getText().toString())
-				);
+
+				if (hive == null) {
+					((HiveActivity) getActivity()).add(
+							hive_name.getText().toString(),
+							honeycomb_count.getText().toString(),
+							breedingcomb_count.getText().toString()
+					);
+				} else {
+					((HiveActivity) getActivity()).changeHiveProperties(
+							hive.getID(),
+							hive_name.getText().toString(),
+							honeycomb_count.getText().toString(),
+							breedingcomb_count.getText().toString());
+				}
 
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -61,6 +69,12 @@ public class AddHiveOverlay extends DialogFragment {
 
 		Dialog dialog=builder.create();
 		return dialog;
+	}
+
+	private void setEditText(EditText editText, String text)
+	{
+		editText.setText(text);
+		editText.setSelection(editText.getText().length());
 	}
 
 	//TODO: onAttach should go to a base fragment class
@@ -75,7 +89,10 @@ public class AddHiveOverlay extends DialogFragment {
 	{
 		DatabaseHandler db = new DatabaseHandler(activity);
 	//	System.out.println(activity);
-		hive_number = db.getHiveNumber(id);
+
+		hive = db.getHive(id);
+		//hive_number = db.getHiveNumber(id);
+
 
 	}
 

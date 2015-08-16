@@ -25,11 +25,11 @@ public class HiveActivity extends ListItem {
 
         //setTitle(getIntent().getStringExtra("apiary_name"));
 		setTitle(mSharedPreferences.getString("apiary_name", ""));
-        db.addHive(new Hive(1,2, 3, 1));
+/*        db.addHive(new Hive(1,2, 3, 1));
         db.addHive(new Hive(2, 3, 4, 1));
         db.addHive(new Hive(2, 4, 5, 2));
         db.addHive(new Hive(3, 6, 7, 2));
-
+*/
 		//String restoredText = mSharedPreferences.getString("text", null);
 		//if (restoredText != nu)
 	//	System.out.println("Apiary -> " + mSharedPreferences.getInt("apiary_id", 0) + "Hive -> " + mSharedPreferences.getInt("hive_id", 0));
@@ -103,7 +103,7 @@ public class HiveActivity extends ListItem {
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
 
-    public void add(int hive_name, int honeycomb_count, int breedingcomb_count)
+    public void add(String hive_name, String honeycomb_count, String breedingcomb_count)
     {
 		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
 
@@ -111,6 +111,11 @@ public class HiveActivity extends ListItem {
         cursorAdapter.changeCursor(getCursor(clicked_id, 1));
     }
 
+    public void changeHiveProperties(int id, String name, String honeycomb_count, String breedingcomb_count)
+    {
+        db.changeHiveProperties(id, name, honeycomb_count, breedingcomb_count);
+        cursorAdapter.changeCursor(getCursor(1, 1));
+    }
 
     public void popDialog()
     {

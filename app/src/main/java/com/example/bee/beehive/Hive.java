@@ -7,12 +7,12 @@ public class Hive extends dbListEntry {
 
 	int id;
 	int apiary_id;
-	int name;
-	int honeycomb_count;
-	int breedingcomb_count;
+	String name;
+	String honeycomb_count;
+	String breedingcomb_count;
 
 	public Hive(){}
-	public Hive(int name, int honeycomb_count, int breedingcomb_count, int apiary_id)
+	public Hive(String name, String honeycomb_count, String breedingcomb_count, int apiary_id)
 	{
 		this.name = name;
 		this.apiary_id = apiary_id;
@@ -20,11 +20,19 @@ public class Hive extends dbListEntry {
 		this.breedingcomb_count = breedingcomb_count;
 	}
 
-	public Hive(int id, int name, int apiary_id)
+	public Hive(int id, String name, int apiary_id)
 	{
 		this.name = name;
 		this.apiary_id = apiary_id;
 		this.id = id;
+	}
+
+	public Hive(int id, String name, String honeycomb_count, String breedingcomb_count, int apiary_id)
+	{
+		this.id = id;
+		this.name = name;
+		this.honeycomb_count = honeycomb_count;
+		this.breedingcomb_count = breedingcomb_count;
 	}
 
 	public int getID()
@@ -37,7 +45,7 @@ public class Hive extends dbListEntry {
 		return apiary_id;
 	}
 
-	public void setName(int name)
+	public void setName(String name)
 	{
 		this.name = name;
 	}
@@ -46,5 +54,16 @@ public class Hive extends dbListEntry {
 	{
 		return String.valueOf(name);
 	}
+
+	public String getHoneycombCount()
+	{
+		return String.valueOf(honeycomb_count);
+	}
+
+	public String getBreedingcombCount()
+	{
+		return String.valueOf(breedingcomb_count);
+	}
+
 
 }
