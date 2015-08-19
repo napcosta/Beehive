@@ -57,10 +57,6 @@ public class AddApiaryOverlay extends DialogFragment {
 
 	public void setName(String name, int id)
 	{
-		//final LayoutInflater inflater = getActivity().getLayoutInflater();
-		//final View view = inflater.inflate(R.layout.activity_add_apiary_overlay, null);
-		//EditText editText = (EditText)view.findViewById(R.id.ApiaryNameInput);
-		//editText.setText(name);
 		this.name = name;
 		this.id = id;
 	}

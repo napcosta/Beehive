@@ -10,10 +10,11 @@
 
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout3">
+        android:id="@+id/linearLayout3"
+        android:paddingBottom="20dp">
 
         <TextView
             android:text="@string/action_add"
@@ -25,20 +26,60 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
 
+        <!-- THIS VIEW IS A HACK TO ALIGN THE INPUT TO THE RIGHT -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:id="@+id/spinner"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout3"
+        android:id="@+id/nucleus_layout"
+        android:paddingBottom="20dp"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Nucleus number"
+            android:id="@+id/textView5"/>
+
+        <!-- THIS VIEW IS A HACK TO ALIGN THE INPUT TO THE RIGHT -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/nucleus_number"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout3"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:layout_below="@+id/nucleus_layout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -50,7 +91,9 @@
             android:layout_below="@+id/spinner"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/textView2"/>
+            android:id="@+id/textView2"
+            android:layout_gravity="top"/>
+
 
         <DatePicker
             android:layout_width="wrap_content"

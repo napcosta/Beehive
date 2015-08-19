@@ -29,7 +29,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String TABLE_ACTIONS = "table_actions";
 	private static final String KEY_ACTION_DATE = "action_date";
     private static final String KEY_ACTION_ID = "_id";
-    private static final String KEY_ACTION_NAME = "action_name";
+    private static final String KEY_ACTION_NUMBER = "action_number";
+    private static final String KEY_ACTION_TARGET = "action_target";
 
     public DatabaseHandler(Context context)
     {
@@ -57,11 +58,13 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         String CREATE_ACTIONS_TABLE = "CREATE TABLE " + TABLE_ACTIONS + "(" +
                 KEY_ACTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                KEY_ACTION_NAME + " TEXT," +
+                KEY_ACTION_NUMBER + " INTEGER UNIQUE," +
+                KEY_ACTION_TARGET + " INTEGER," + //If the action is a split, this is going to be the number of the nucleus
 				KEY_ACTION_DATE + " TEXT," +
                 KEY_HIVE_ID + " INTEGER," +
                 " FOREIGN KEY (" + KEY_HIVE_ID + ") REFERENCES " + TABLE_HIVES + " (" + KEY_HIVE_ID + ") ON DELETE CASCADE" +
             ")";
+
         db.execSQL(CREATE_APIARIES_TABLE);
         db.execSQL(CREATE_HIVES_TABLE);
         db.execSQL(CREATE_ACTIONS_TABLE);
@@ -126,7 +129,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
 	public String getKeyActionName()
 	{
-		return KEY_ACTION_NAME;
+		return KEY_ACTION_NUMBER;
 	}
 
     public String getKeyHiveName()
@@ -194,7 +197,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.close();
 		if (cursor != null && cursor.moveToFirst()) {
 			date = cursor.getString(cursor.getColumnIndex(KEY_ACTION_DATE));
-			name = cursor.getString(cursor.getColumnIndex(KEY_ACTION_NAME));
+			name = cursor.getString(cursor.getColumnIndex(KEY_ACTION_NUMBER));
 		}
 
 		return new String[] {date, name};
@@ -229,14 +232,17 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ACTION_NAME, action.getName());
+        values.put(KEY_ACTION_NUMBER, action.getName());
         values.put(KEY_HIVE_ID, action.getHiveID());
 		values.put(KEY_ACTION_DATE, "" + action.year + "-" + action.month + "-" + action.day);
-        try {
+        values.put(KEY_ACTION_TARGET, action.getTarget());
+
+        db.insertWithOnConflict(TABLE_ACTIONS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        /*try {
             db.insertOrThrow(TABLE_ACTIONS, null, values);
         } catch (SQLiteConstraintException e) {
             System.out.println("EXCEPTION ----------------------> ACTION ALREADY EXISTS");
-        }
+        }*/
 
         db.close();
     }
@@ -247,8 +253,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         // Cursor: query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit)
         Cursor cursor = db.query(
-                TABLE_APIARIES, new String[] {KEY_APIARY_ID, KEY_APIARY_NAME}, KEY_APIARY_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
+				TABLE_APIARIES, new String[]{KEY_APIARY_ID, KEY_APIARY_NAME}, KEY_APIARY_ID + "=?",
+				new String[]{String.valueOf(id)}, null, null, null, null);
 
         if (cursor != null)
             cursor.moveToFirst();
@@ -263,18 +269,40 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
        // Cursor cursor = db.rawQuery("SELECT " + KEY_HIVE_NUMBER + " FROM " + TABLE_HIVES + " WHERE " + KEY_HIVE_ID + " = " + id, null);
 
-        Cursor cursor = db.query(TABLE_HIVES, null, KEY_HIVE_ID + "=?", new String[] {String.valueOf(id)}, null, null,null,null);
+        Cursor cursor = db.query(TABLE_HIVES, null, KEY_HIVE_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
 
         if (cursor != null)
             cursor.moveToFirst();
 
 		Hive hive = new Hive(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), -1);
-      //  System.out.println(cursor.getString(0) + " - " + cursor.getString(1) + " - " + cursor.getString(2) + " - " + cursor.getString(3));
-	//	System.out.println(hive.getID() + " - " + cursor.getString(0));
+
         db.close();
         return hive;
-
     }
+
+	public Action getAction(int id)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		Cursor cursor = db.query(TABLE_ACTIONS, null, KEY_ACTION_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		String date;
+		int day, month, year;
+		date = cursor.getString(3);
+		year = Integer.valueOf(date.substring(0, 4));
+		month = Integer.valueOf(date.substring(5,6));
+		day = Integer.valueOf(date.substring(7,9));
+
+	//	System.out.println(year + " - " + month + " - " + day + " - " + date);
+
+		Action action = new Action(cursor.getString(1), cursor.getString(2), day, month, year, -1);
+
+		//Action action = new Action("1", "2", 10, 11, 2015, -1);
+		return action;
+	}
 
 
     public void changeApiaryName(int id, String name)

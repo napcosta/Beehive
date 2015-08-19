@@ -88,6 +88,8 @@ public class CustomCursorAdapter extends CursorAdapter {
 //					Toast.makeText(context, ""+context.getSharedPreferences(PREFERENCES, context.MODE_PRIVATE).getInt("apiary_id", 0), Toast.LENGTH_SHORT).show();
 				} else if (activity_name.equals(HiveActivity.class.getSimpleName())) {
 					((HiveActivity) context).popDialog(item_id);
+				} else if (activity_name.equals(ActionActivity.class.getSimpleName())) {
+					((ActionActivity) context).popDialog(item_id);
 				}
 
 				//Toast.makeText(context, ""+item_id, Toast.LENGTH_SHORT).show();

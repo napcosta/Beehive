@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.bee.beehive.Action;
 import com.example.bee.beehive.Fragments.AddActionOverlay;
+import com.example.bee.beehive.Fragments.AddHiveOverlay;
 import com.example.bee.beehive.R;
 
 
@@ -27,11 +28,11 @@ public class ActionActivity extends ListItem
 
 	}
 
-	public void add(String action_name, int day, int month, int year)
+	public void add(String action_name, String target, int day, int month, int year)
 	{
 		mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
 
-		db.addAction(new Action(action_name, day, month, year, mSharedPreferences.getInt("apiary_id", 0), mSharedPreferences.getInt("hive_id", 0)));
+		db.addAction(new Action(action_name, target, day, month, year, mSharedPreferences.getInt("hive_id", 0)));
 
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
@@ -78,6 +79,14 @@ public class ActionActivity extends ListItem
 		AddActionOverlay addOverlay = new AddActionOverlay();
 		addOverlay.show(getFragmentManager(), "Add Overlay");
 
+	}
+
+	public void popDialog(int id)
+	{
+		AddActionOverlay addOverlay = new AddActionOverlay();
+		addOverlay.onAttach(this);
+		addOverlay.show(getFragmentManager(), "AddOverlay");
+		addOverlay.setActionData(id);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package com.example.bee.beehive.Activities;
 
-import android.app.FragmentManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,20 +24,6 @@ public class HiveActivity extends ListItem {
 
         //setTitle(getIntent().getStringExtra("apiary_name"));
 		setTitle(mSharedPreferences.getString("apiary_name", ""));
-/*        db.addHive(new Hive(1,2, 3, 1));
-        db.addHive(new Hive(2, 3, 4, 1));
-        db.addHive(new Hive(2, 4, 5, 2));
-        db.addHive(new Hive(3, 6, 7, 2));
-*/
-		//String restoredText = mSharedPreferences.getString("text", null);
-		//if (restoredText != nu)
-	//	System.out.println("Apiary -> " + mSharedPreferences.getInt("apiary_id", 0) + "Hive -> " + mSharedPreferences.getInt("hive_id", 0));
-
-     //   System.out.println("HIVE SIZE ----------->>>>>>>>> " + db.getAllHives(1).size());
-/*
-        for(dbListEntry a : db.getAllHives(1)) {
-            System.out.println("GET ALL HIVES ->>>>>>>>>>>>>>>>>> " + a.getName());
-        }*/
 
     }
 

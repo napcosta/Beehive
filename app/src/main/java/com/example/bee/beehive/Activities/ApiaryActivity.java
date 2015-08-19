@@ -3,14 +3,10 @@ package com.example.bee.beehive.Activities;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.bee.beehive.Apiary;
 import com.example.bee.beehive.Fragments.AddApiaryOverlay;
 import com.example.bee.beehive.R;
-import com.example.bee.beehive.dbListEntry;
 
-import java.util.List;
 
 
 public class ApiaryActivity extends ListItem {
@@ -22,14 +18,6 @@ public class ApiaryActivity extends ListItem {
         setContentView(R.layout.activity_apiary);
 
         setTitle("Apiaries");
-
-        db.addApiary(new Apiary("PORTO"));
-        //db.deleteApiary(new Apiary(1,"PORTO"));
-        db.addApiary(new Apiary("LISBOA"));
-        List<dbListEntry> apiaries = db.getAllApiaries();
-        for(dbListEntry a : apiaries) {
-            System.out.println("GET ALL APIARIES ->>>>>>>>>>>>>>>>>> " + a.getName() + " -- " + a.getID());
-        }
 
     }
 

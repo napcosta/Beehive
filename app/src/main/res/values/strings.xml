@@ -9,10 +9,9 @@
     <string name="title_activity_action">Action</string>
     <string name="title_activity_add_overlay">AddOverlay</string>
     <string-array name="action_array">
-        <item>"ACTION A"</item>
-        <item>"ACTION B"</item>
-        <item>"ACTION C"</item>
-        <item>"ACTION D"</item>
+        <item>"Feed"</item>
+        <item>"Split"</item>
+        <item>"Harvest"</item>
     </string-array>
     <string name="title_activity_add_hive_overlay">AddHiveOverlay</string>
 

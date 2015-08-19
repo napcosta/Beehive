@@ -13,16 +13,17 @@ public class Action extends dbListEntry {
 	int day;
 	int month;
 	int year;
+	String target;
 
 	public Action(){}
-	public Action(String name, int day, int month, int year, int apiary_id, int hive_id)
+	public Action(String name, String target, int day, int month, int year, int hive_id)
 	{
 		this.name = name;
 		this.hive_id = hive_id;
-		this.apiary_id = apiary_id;
 		this.day = day;
 		this.month = month;
 		this.year = year;
+		this.target = target;
 	}
 
 	public Action(int id, String name, int apiary_id, int hive_id)
@@ -51,6 +52,26 @@ public class Action extends dbListEntry {
 	public String getName()
 	{
 		return String.valueOf(name);
+	}
+
+	public String getTarget()
+	{
+		return target;
+	}
+
+	public int getDay()
+	{
+		return day;
+	}
+
+	public int getMonth()
+	{
+		return month;
+	}
+
+	public int getYear()
+	{
+		return year;
 	}
 
 }
