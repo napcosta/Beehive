@@ -32,7 +32,7 @@ public class AddApiaryOverlay extends DialogFragment {
 		editText.setText(name);
 		editText.setSelection(editText.getText().length());
 
-		builder.setPositiveButton((name == null) ? "Add" : "Change", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton((name == null) ? getString(R.string.add) : getString(R.string.change), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				EditText input = (EditText) view.findViewById(R.id.ApiaryNameInput);
@@ -44,7 +44,7 @@ public class AddApiaryOverlay extends DialogFragment {
 				}
 
 			}
-		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		}).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 

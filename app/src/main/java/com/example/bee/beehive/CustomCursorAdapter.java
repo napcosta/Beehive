@@ -42,21 +42,48 @@ public class CustomCursorAdapter extends CursorAdapter {
 		return mInflater.inflate(R.layout.list_item, parent, false);
 	}
 
+	private String actionNumberToString(Context context, int i)
+	{
+		String action;
+
+		switch(i) {
+			case 0:
+				action = context.getString(R.string.action_feed);
+				break;
+			case 1:
+				action = context.getString(R.string.action_split);
+				break;
+			case 2:
+				action = context.getString(R.string.action_harvest);
+				break;
+			default:
+				action = "whatevs";
+				break;
+		}
+		return action;
+
+	}
+
 	@Override
 	public void bindView(View view, final Context context, Cursor cursor) {
 
-
+		final String activity_name = context.getClass().getSimpleName();
 		TextView subTextView = (TextView) view.findViewById(R.id.subText);
 		final TextView textView = (TextView) view.findViewById(R.id.list_item_textview);
 		final int item_id = (int) cursor.getLong(cursor.getColumnIndex(((ListItem) context).getKeyId()));
-		textView.setText(cursor.getString(cursor.getColumnIndex(((ListItem) context).getKeyName())));
+
+		if (activity_name.equals(ActionActivity.class.getSimpleName())) {
+			textView.setText(actionNumberToString(context, Integer.valueOf(cursor.getString(cursor.getColumnIndex(((ListItem) context).getKeyName())))));
+		} else {
+			textView.setText(cursor.getString(cursor.getColumnIndex(((ListItem) context).getKeyName())));
+		}
 		subTextView.setText(((ListItem) context).getSubText(item_id));
 		final String item_name = textView.getText().toString();
 
 		ImageButton deleteButton = (ImageButton) view.findViewById(R.id.deleteButton);
 		deleteButton.setTag(item_id);
 
-		final String activity_name = context.getClass().getSimpleName();
+
 
 		view.setOnClickListener(new View.OnClickListener() {
 			@Override

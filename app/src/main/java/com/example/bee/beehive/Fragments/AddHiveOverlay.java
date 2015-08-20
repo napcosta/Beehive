@@ -28,7 +28,7 @@ public class AddHiveOverlay extends DialogFragment {
 		final LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View view = inflater.inflate(R.layout.activity_add_hive_overlay, null);
 		TextView overlayTitle = (TextView) view.findViewById(R.id.overlayAddApiary);
-		builder.setTitle("Set hive properties");
+		builder.setTitle(getString(R.string.set_hive_properties));
 		builder.setView(view);
 
 		if (hive != null) {
@@ -37,7 +37,7 @@ public class AddHiveOverlay extends DialogFragment {
 			setEditText((EditText)view.findViewById(R.id.breedingcombs), hive.getBreedingcombCount());
 		}
 
-		builder.setPositiveButton((hive == null) ? "Add" : "Change", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton((hive == null) ? getString(R.string.add) : getString(R.string.change), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				EditText hive_name = (EditText) view.findViewById(R.id.HiveNameInput);
@@ -60,7 +60,7 @@ public class AddHiveOverlay extends DialogFragment {
 				}
 
 			}
-		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		}).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 

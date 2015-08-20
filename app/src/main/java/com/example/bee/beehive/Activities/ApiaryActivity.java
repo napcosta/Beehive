@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.bee.beehive.Fragments.AddApiaryOverlay;
 import com.example.bee.beehive.R;
 
+import java.util.Locale;
 
 
 public class ApiaryActivity extends ListItem {
@@ -17,7 +18,7 @@ public class ApiaryActivity extends ListItem {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apiary);
 
-        setTitle("Apiaries");
+        setTitle(getString(R.string.apiary));
 
     }
 
@@ -55,7 +56,7 @@ public class ApiaryActivity extends ListItem {
     @Override
     public String getSubText(int apiary_id)
     {
-        return db.getHiveCount(apiary_id) + " apiaries";
+        return db.getHiveCount(apiary_id) + " "+getString(R.string.apiaries);
     }
 
     public String getKeyId()

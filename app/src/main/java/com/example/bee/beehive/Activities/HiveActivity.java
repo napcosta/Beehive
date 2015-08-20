@@ -58,9 +58,9 @@ public class HiveActivity extends ListItem {
 	public String getSubText(int id) {
 		String[] action = db.getNextAction(id);
         if (action[1] == null) {
-            return "No action scheduled";
+            return getString(R.string.no_action_scheduled);
         } else {
-            return action[1] + " scheduled on " + action[0];
+            return action[1] + " " + getString(R.string.scheduled_on) + " " + action[0];
         }
 	}
 

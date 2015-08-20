@@ -52,7 +52,7 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(this);
-		builder.setTitle("Set action properties");
+		builder.setTitle(R.string.set_action_properties);
 		builder.setView(view);
 
 		if (action != null) {
@@ -62,7 +62,7 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 		}
 
 
-		builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton((action == null) ? getString(R.string.add) : getString(R.string.change), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 
@@ -74,7 +74,7 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 				((ActionActivity) getActivity()).add(action_number, editText.getText().toString(), datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
 
 			}
-		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		}).setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 
@@ -97,7 +97,7 @@ public class AddActionOverlay extends DialogFragment implements AdapterView.OnIt
 
 		action_number = "" + id;
 
-		Toast.makeText(getActivity(), "You Selected " + id, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getActivity(), "You Selected " + id, Toast.LENGTH_SHORT).show();
 	}
 
 	//TODO: onAttach should go to a base fragment class
