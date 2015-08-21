@@ -70,7 +70,8 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/nucleus_number"/>
+            android:id="@+id/nucleus_number"
+            android:imeOptions="actionDone"/>
     </LinearLayout>
 
     <LinearLayout
