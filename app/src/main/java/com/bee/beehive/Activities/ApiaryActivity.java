@@ -7,7 +7,7 @@ import android.view.View;
 import com.bee.beehive.Fragments.AddApiaryOverlay;
 import com.bee.beehive.R;
 
-import java.util.Locale;
+
 
 
 public class ApiaryActivity extends ListItem {
@@ -19,6 +19,8 @@ public class ApiaryActivity extends ListItem {
         setContentView(R.layout.activity_apiary);
 
         setTitle(getString(R.string.apiary));
+        startAdMob();
+
 
     }
 

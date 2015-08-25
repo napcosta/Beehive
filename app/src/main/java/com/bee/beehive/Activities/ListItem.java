@@ -1,6 +1,5 @@
 package com.bee.beehive.Activities;
 
-import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
@@ -10,7 +9,9 @@ import com.bee.beehive.CustomCursorAdapter;
 
 import com.bee.beehive.Apiary;
 import com.bee.beehive.DatabaseHandler;
-import com.bee.beehive.Fragments.AddApiaryOverlay;
+import com.bee.beehive.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 /**
  * Created by Nuno on 13/06/2015.
@@ -39,7 +40,12 @@ public abstract class ListItem extends ActionBarActivity
         db.addApiary(new Apiary(apiary_name));
         cursorAdapter.changeCursor(getCursor(1, 1));
     }
-
+	protected void startAdMob()
+	{
+		AdView mAdView = (AdView) findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		mAdView.loadAd(adRequest);
+	}
     private void reloadActivity()
     {
         finish();

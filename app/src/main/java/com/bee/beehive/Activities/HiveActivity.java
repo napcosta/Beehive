@@ -10,7 +10,8 @@ import com.bee.beehive.DatabaseHandler;
 import com.bee.beehive.Fragments.AddHiveOverlay;
 import com.bee.beehive.Hive;
 import com.bee.beehive.R;
-
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class HiveActivity extends ListItem {
@@ -24,6 +25,8 @@ public class HiveActivity extends ListItem {
 
         //setTitle(getIntent().getStringExtra("apiary_name"));
 		setTitle(mSharedPreferences.getString("apiary_name", ""));
+
+        startAdMob();
 
     }
 

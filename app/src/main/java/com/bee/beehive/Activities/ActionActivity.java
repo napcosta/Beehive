@@ -23,7 +23,7 @@ public class ActionActivity extends ListItem
 		setContentView(R.layout.activity_hive);
 //		setTitle(getIntent().getStringExtra("apiary_name"));
 
-		//db.addAction(new Action(1,1,1));
+		startAdMob();
 
 
 	}
