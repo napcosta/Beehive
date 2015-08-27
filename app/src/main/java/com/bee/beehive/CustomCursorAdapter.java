@@ -81,8 +81,8 @@ public class CustomCursorAdapter extends CursorAdapter {
 		final String item_name = textView.getText().toString();
 
 		ImageButton deleteButton = (ImageButton) view.findViewById(R.id.deleteButton);
-		deleteButton.setTag(item_id);
-
+		deleteButton.setTag(R.string.id, item_id);
+		deleteButton.setTag(R.string.name, item_name);
 
 
 		view.setOnClickListener(new View.OnClickListener() {

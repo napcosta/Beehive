@@ -1,5 +1,7 @@
 package com.bee.beehive.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -45,9 +47,22 @@ public class ApiaryActivity extends ListItem {
 		cursorAdapter.changeCursor(getCursor(1, 1));
 	}
 
-    public void deleteButton(View view) {
-        db.deleteApiary(Integer.valueOf(view.getTag().toString()));
-        cursorAdapter.changeCursor(getCursor(1, 1));
+    public void deleteButton(View view)
+    {
+        final View view_arg = view;
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.delete_apiary_overlay_title)
+                .setMessage(getText(R.string.delete_overlay_message) + " " + "\""+view_arg.getTag(R.string.name).toString()+"\"?")
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.deleteApiary(Integer.valueOf(view_arg.getTag(R.string.id).toString()));
+                        cursorAdapter.changeCursor(getCursor(1, 1));
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
     }
 
     public String getKeyName()

@@ -11,7 +11,7 @@
     <string name="action_split">Split</string>
     <string name="action_harvest">Harvest</string>
 
-
+    <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="change">Change</string>
 
@@ -25,6 +25,10 @@
     <string name="no_action_scheduled">No action scheduled</string>
     <string name="scheduled_on"> scheduled on </string>
 
+    <string name="delete_hive_overlay_title">Delete hive?</string>
+    <string name="delete_action_overlay_title">Delete action?</string>
+    <string name="delete_apiary_overlay_title">Delete apiary?</string>
+    <string name="delete_overlay_message">Are you sure you want to delete</string>
     <string name="set_hive_properties">Set hive properties</string>
     <string name="set_action_properties">Set action properties</string>
     <string name="title_activity_hive">Hive</string>
@@ -38,8 +42,9 @@
     <string name="title_activity_add_hive_overlay">AddHiveOverlay</string>
 
 
-
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="id" translatable="false">id</string>
+    <string name="name" translatable="false">name</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
 
 
 

@@ -23,7 +23,7 @@
     <string name="date">Data</string>
     <string name="nucleus_number">Número do núcleo</string>
     <string name="set_action_properties">Propriedades da acção</string>
-
+    <string name="delete">Eliminar</string>
     <string name="no_action_scheduled">Nenhuma acção agendada</string>
     <string name="scheduled_on"> agendada para </string>
 
@@ -34,5 +34,7 @@
     </string-array>
     <string name="title_activity_add_hive_overlay">AddHiveOverlay</string>
 
+    <string name="delete_apiary_overlay_title">Eliminar apiário?</string>
+    <string name="delete_overlay_message">Tem a certeza que deseja eliminar</string>
 
 </resources>
