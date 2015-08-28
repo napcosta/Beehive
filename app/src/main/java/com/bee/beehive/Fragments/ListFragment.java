@@ -9,19 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-import com.bee.beehive.Activities.ApiaryActivity;
 import com.bee.beehive.Activities.ListItem;
+import com.bee.beehive.Activities.SettingsActivity;
 import com.bee.beehive.CustomCursorAdapter;
 import com.bee.beehive.R;
-
-import java.util.List;
 
 
 /**
@@ -57,8 +51,13 @@ public class ListFragment extends Fragment {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml
         int id = item.getItemId();
+//		Toast.makeText(getActivity(), "HERE", Toast.LENGTH_LONG).show();
         if (id == R.id.action_add) {
             ((ListItem) getActivity()).popDialog();
+            return true;
+        } else if (id == R.id.action_settings) {
+            Intent i = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
