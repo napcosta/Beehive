@@ -35,6 +35,8 @@
     <string name="title_activity_add_hive_overlay">AddHiveOverlay</string>
 
     <string name="delete_apiary_overlay_title">Eliminar apiário?</string>
+    <string name="delete_action_overlay_title">Eliminar acção?</string>
+    <string name="delete_hive_overlay_title">Eliminar colmeia?</string>
     <string name="delete_overlay_message">Tem a certeza que deseja eliminar</string>
 
 </resources>

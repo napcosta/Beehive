@@ -55,11 +55,11 @@ public class ListFragment extends Fragment {
         if (id == R.id.action_add) {
             ((ListItem) getActivity()).popDialog();
             return true;
-        } else if (id == R.id.action_settings) {
+        } /*else if (id == R.id.action_settings) {
             Intent i = new Intent(getActivity(), SettingsActivity.class);
             startActivity(i);
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
